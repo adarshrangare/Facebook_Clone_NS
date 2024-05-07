@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import CreatePost from './CreatePost'
 import { getAllPosts } from '@/lib/actions'
 import { getServerSession } from 'next-auth';
@@ -8,16 +8,19 @@ import PostContainer from './PostContainer';
 
 
 const MainSection = async() => {
- 
-      
+  
+    
   return (
-    <div className='h-[300vh]'>
+    <main className='min-h-screen'>
 
         <CreatePost/>
+        
+
         <PostContainer/>
+       
 
 
-    </div>
+    </main>
   )
 }
 

@@ -75,9 +75,8 @@ export async function getAllPosts(jwt:string,page:number){
     })
 
     const data = await response.json();
-
-    if(data.status === 'fail'){
-      throw new Error(data.message);
+    if(data?.status === 'fail'){
+      throw new Error(data?.message);
     } else{
       return data;
     }
@@ -90,26 +89,26 @@ export async function getAllPosts(jwt:string,page:number){
 
 
 
-// export async function toggleUpVote(shouldUpVote, jwt, postID) {
-// 	try {
-// 		const data = await fetch(
-// 			`https://academics.newtonschool.co/api/v1/quora/like/${postID}`,
-// 			{
-// 				method: shouldUpVote ? "POST" : "DELETE",
-// 				headers: {
-// 					"Content-Type": "application/json",
-// 					projectID: projectID,
-// 					Authorization: `Bearer ${jwt}`,
-// 				},
-// 			}
-// 		);
-// 		const res = await data.json();
-// 		if (res.status === "success") return { message: "success" };
-// 		else throw Error("failed");
-// 	} catch (error) {
-// 		return { message: "error" };
-// 	}
-// }
+export async function likePost( jwt:string, postID:string,like:boolean) {
+	try {
+		const data = await fetch(
+			`https://academics.newtonschool.co/api/v1/quora/like/${postID}`,
+			{
+				method: like ? "POST" : "DELETE",
+				headers: {
+					"Content-Type": "application/json",
+					projectID: projectID,
+					Authorization: `Bearer ${jwt}`,
+				},
+			}
+		);
+		const res = await data.json();
+		if (res.status === "success") return { message: "success" };
+		else throw Error("failed");
+	} catch (error) {
+		return { message: "error" };
+	}
+}
 
 // export async function getPostDetail(jwt, postID) {
 // 	try {
