@@ -89,12 +89,12 @@ export async function getAllPosts(jwt:string,page:number){
 
 
 
-export async function likePost( jwt:string, postID:string,like:boolean) {
+export async function likePost( jwt:string, postID:string,method:"POST"|"DELETE") {
 	try {
 		const data = await fetch(
-			`https://academics.newtonschool.co/api/v1/quora/like/${postID}`,
+			`https://academics.newtonschool.co/api/v1/facebook/like/${postID}`,
 			{
-				method: like ? "POST" : "DELETE",
+				method: method,
 				headers: {
 					"Content-Type": "application/json",
 					projectID: projectID,
@@ -103,6 +103,7 @@ export async function likePost( jwt:string, postID:string,like:boolean) {
 			}
 		);
 		const res = await data.json();
+    console.log({res});
 		if (res.status === "success") return { message: "success" };
 		else throw Error("failed");
 	} catch (error) {

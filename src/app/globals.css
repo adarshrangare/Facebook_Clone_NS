@@ -4,4 +4,9 @@
 
 body {
   min-height: 100vh;
+  
+}
+
+*{
+  @apply transition-all;
 }
