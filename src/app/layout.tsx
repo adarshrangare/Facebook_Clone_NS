@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import SessionContext from "@/context/SessionProvider";
 import "./globals.css";
-
+import { Toaster } from "react-hot-toast";
+import Footer from "@/components/Footer/Footer";
+import ThemeContext from "@/context/ThemeContext";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -15,8 +18,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang="en" suppressHydrationWarning>
+        
+        <SessionContext>
+          <body className={`${inter.className} bg-body-light dark:bg-body-dark text-primary-light dark:text-primary-dark`}>
+      <ThemeContext>
+            <Toaster position="bottom-center" />
+            {children}
+            <Footer/>
+      </ThemeContext>
+          </body>
+        </SessionContext>
     </html>
   );
 }
