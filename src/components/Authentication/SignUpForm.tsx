@@ -57,7 +57,7 @@ const SignUp = ({ closeModal }: { closeModal: () => void }) => {
     <div className="flex flex-col gap-2 w-[110%]  relative -left-[5%]">
       <div className="heading  border-b flex-1 pb-2 px-4">
         <h1 className="text-2xl md:text-4xl font-semibold">Sign Up</h1>
-        <p className="text-gray-500 text-lg mt-1">It's quick and easy.</p>
+        <p className="text-gray-500 text-lg mt-1">It&apos;s quick and easy.</p>
       </div>
       <Formik
         initialValues={{

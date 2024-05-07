@@ -16,7 +16,7 @@ const CreatePost = () => {
       <div className="w-full flex gap-3 border-b pb-2">
         <UserIcon className="w-10 h-10 rounded-full bg-gray-200 dark:invert p-1.5 text-gray-800 " />
         <span className="cursor-pointer  bg-compo-light h-10 text-neutral-500 hover:bg-neutral-200 dark:hover:bg-compo-dark  dark:bg-neutral-900 rounded-full w-full px-4 py-2 ">
-          What's on your mind, {userDetails?.name?.split(" ")[0]}?
+          What&apos;s on your mind, {userDetails?.name?.split(" ")[0]}?
         </span>
       </div>
       <div className="flex  justify-between pt-3">

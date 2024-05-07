@@ -21,13 +21,13 @@ const handler = NextAuth({
   callbacks: {
    
     async session({ session, token,user }) {
-        session.user = { ...token,token };
-        // session.user.image = token
-        session.accessToken = token.accessToken;
-        console.log(session);
+        session.user = { ...token};
+        // session.accessToken = token.accessToken;
+        // console.log({session});
         return session;
     },
     async jwt({ token, user,account }) {
+      // console.log({token})
         if (user?.status && user.status === "success") {
             token.name = user.data.user.name;
             token.email = user.data.user.email;
@@ -37,9 +37,7 @@ const handler = NextAuth({
             token.jwt = user.token;
         } 
 
-        if (account && account.access_token) {
-          token.accessToken = account.access_token // <-- adding the access_token here
-      }
+      // console.log({token,user,account})
         
       return token;
     },

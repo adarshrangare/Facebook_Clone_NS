@@ -2,17 +2,19 @@ import React from 'react'
 import { facebookLogo } from '@/lib/utils'
 import LoginForm from './LoginForm'
 import SignUpModal from './SignUpModal'
+import Image from 'next/image'
 const Login = () => {
   return (
     <main className="relative w-full bg-gray-100 min-h-screen flex items-center ">
       <div className="mx-auto w-full md:w-9/12 lg:w-8/12 p-4  ">
         <div className="w-full h-full grid md:grid-cols-2 md:gap-4 md:-translate-y-10">
           <section className="leftSection flex flex-col  ">
-            <img
+            <Image
               src={facebookLogo}
               alt="facebook Logo"
+              width={300}
               height={108}
-              className="h-[108px] sm:self-start max-sm:h-[96px]"
+              className="h-[108px] w-80 sm:self-start max-sm:h-[96px]"
             />
             <h2 className="md:px-6 px-2 max-md:text-center max-sm:text-lg dark:text-primary-light text-primary-dark ">
               Facebook helps you connect and share with the people in your life.
