@@ -1,10 +1,8 @@
+
 import { Skeleton } from "antd";
 import SkeletonAvatar from "antd/es/skeleton/Avatar";
-import SkeletonTitle from "antd/es/skeleton/Title";
-import SkeletonNode from "antd/es/skeleton/Node";
 import React from "react";
-import { Slackey } from "next/font/google";
-import SkeletonInput from "antd/es/skeleton/Input";
+
 
 const PostCardLoader = () => {
   return (

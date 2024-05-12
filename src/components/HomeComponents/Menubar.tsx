@@ -1,11 +1,60 @@
-import React from 'react'
+import React from "react";
+import ProfileCardNav from "../Header/ProfileCardNav";
+import { GiMedicalPack } from "react-icons/gi";
+import { menubarItems } from "@/lib/utils";
 
-const Menubar = async() => {
+const containerStyle = {
+  backgroundImage:
+    "url('https://static.xx.fbcdn.net/rsrc.php/v3/yS/r/aW4FjA5PhOT.png')",
+  backgroundPosition: "0 -259px",
+  backgroundSize: "auto",
+  width: "36px",
+  height: "36px",
+  backgroundRepeat: "no-repeat",
+  display: "inline-block",
+};
+
+const Menubar = async () => {
   return (
-    <aside className='sticky top-16 bg-red-400'>
-      
-    </aside>
-  )
-}
+    <div className="sticky top-16 ">
+      <ul className="w-full md:w-10/12 lg:w-9/12">
+        <li className="py-2 ">
+          <ProfileCardNav />
+        </li>
+        <li className="pt-2 px-2 rounded-md cursor-pointer hover:bg-zinc-200 dark:hover:bg-hover-dark">
+          <div className="flex items-center gap-3  pb-2 dark:text-primary-dark text-primary-light">
+            <GiMedicalPack className=" w-10 h-10 rounded-full   p-1 text-blue-500 " />
+            <span className="font-semibold leading-5">
+              COVID-19 Information Centre
+            </span>
+          </div>
+        </li>
 
-export default Menubar
+        {menubarItems.map((item) => (
+          <li className="pt-2 px-2 rounded-md cursor-pointer hover:bg-zinc-200 dark:hover:bg-hover-dark">
+            <div className="flex items-center gap-3  pb-2 dark:text-primary-dark text-primary-light">
+              <i
+                className=""
+                style={{
+                  backgroundImage:
+                    "url('https://static.xx.fbcdn.net/rsrc.php/v3/yS/r/aW4FjA5PhOT.png')",
+                  backgroundPosition: item.bgPosition,
+                  backgroundSize: "auto",
+                  width: "36px",
+                  height: "36px",
+                  backgroundRepeat: "no-repeat",
+                  display: "inline-block",
+                }}
+              ></i>
+              <span className="font-semibold leading-5">
+                {item.title}
+              </span>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+export default Menubar;

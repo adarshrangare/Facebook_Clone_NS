@@ -6,5 +6,15 @@ import Signout from "./Authentication/signout";
 import Header from "./Header/Header";
 import Footer from "./Footer/Footer";
 import MainSection from "./HomeComponents/MainSection";
-
-export { Login, InputBox, Menubar, AdSection,Signout, Header,Footer,MainSection };
+import MenuPopUp from "./Basic Components/MenuPopUp";
+export {
+  Login,
+  InputBox,
+  Menubar,
+  AdSection,
+  Signout,
+  Header,
+  Footer,
+  MainSection,
+  MenuPopUp,
+};

@@ -28,6 +28,7 @@ export interface SignUpFormValues {
 
   
 export interface UserData {
+  id?:string;
   _id?: string;
   name?: string;
   email?: string;

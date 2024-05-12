@@ -107,6 +107,72 @@ export async function likePost( jwt:string, postID:string,method:"POST"|"DELETE"
 		if (res.status === "success") return { message: "success" };
 		else throw Error("failed");
 	} catch (error) {
+    return { message: "error" };
+	}
+}
+
+
+export async function createAPost(jwt:string, formData:FormData) {
+  try {
+    const data = await fetch(
+      "https://academics.newtonschool.co/api/v1/facebook/post/",
+      {
+        method: "POST",
+        body: formData,
+        headers: {
+          projectID: projectID,
+          Authorization: `Bearer ${jwt}`,
+        },
+      }
+    );
+    const res = await data.json();
+    if (res.status === "success") {
+      return { message: "success", id: res.data._id };
+    }
+    return { message: "fail" };
+  } catch (error) {
+    return { message: "error" };
+  }
+}
+
+export async function deletePost(jwt:string, postID:string) {
+	try {
+		const data = await fetch(
+			`https://academics.newtonschool.co/api/v1/facebook/post/${postID}`,
+			{
+				method: "DELETE",
+				headers: {
+					projectID: projectID,
+					Authorization: `Bearer ${jwt}`,
+				},
+			}
+		);
+		const res = await data.json();
+		return res;
+	} catch (error) {
+		return { message: "success" };
+	}
+}
+
+export async function editAPost(jwt:string, formData:FormData, id:string) {
+	try {
+		const data = await fetch(
+			`https://academics.newtonschool.co/api/v1/facebook/post/${id}`,
+			{
+				method: "PATCH",
+				body: formData,
+				headers: {
+					projectID: projectID,
+					Authorization: `Bearer ${jwt}`,
+				},
+			}
+		);
+		const res = await data.json();
+		if (res.status === "success") {
+			return { message: "success", id: res.data._id };
+		}
+		return { message: "fail" };
+	} catch (error) {
 		return { message: "error" };
 	}
 }
@@ -132,68 +198,8 @@ export async function likePost( jwt:string, postID:string,method:"POST"|"DELETE"
 // 		return { message: "error" };
 // 	}
 // }
-// export async function createAPost(jwt, formData) {
-// 	try {
-// 		const data = await fetch(
-// 			"https://academics.newtonschool.co/api/v1/quora/post/",
-// 			{
-// 				method: "POST",
-// 				body: formData,
-// 				headers: {
-// 					projectID: projectID,
-// 					Authorization: `Bearer ${jwt}`,
-// 				},
-// 			}
-// 		);
-// 		const res = await data.json();
-// 		if (res.status === "success") {
-// 			return { message: "success", id: res.data._id };
-// 		}
-// 		return { message: "fail" };
-// 	} catch (error) {
-// 		return { message: "error" };
-// 	}
-// }
-// export async function editAPost(jwt, formData, id) {
-// 	try {
-// 		const data = await fetch(
-// 			`https://academics.newtonschool.co/api/v1/quora/post/${id}`,
-// 			{
-// 				method: "PATCH",
-// 				body: formData,
-// 				headers: {
-// 					projectID: projectID,
-// 					Authorization: `Bearer ${jwt}`,
-// 				},
-// 			}
-// 		);
-// 		const res = await data.json();
-// 		if (res.status === "success") {
-// 			return { message: "success", id: res.data._id };
-// 		}
-// 		return { message: "fail" };
-// 	} catch (error) {
-// 		return { message: "error" };
-// 	}
-// }
-// export async function deletePost(jwt, postID) {
-// 	try {
-// 		const data = await fetch(
-// 			`https://academics.newtonschool.co/api/v1/quora/post/${postID}`,
-// 			{
-// 				method: "DELETE",
-// 				headers: {
-// 					projectID: projectID,
-// 					Authorization: `Bearer ${jwt}`,
-// 				},
-// 			}
-// 		);
-// 		const res = await data.json();
-// 		return res;
-// 	} catch (error) {
-// 		return { message: "success" };
-// 	}
-// }
+
+
 // export async function getUser(jwt, uid) {
 // 	try {
 // 		const data = await fetch(

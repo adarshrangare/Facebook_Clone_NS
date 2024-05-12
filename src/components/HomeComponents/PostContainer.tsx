@@ -1,16 +1,38 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { getAllPosts } from "@/lib/actions";
 import { Post } from "@/lib/definations";
 import HomePostCard from "./HomePostCard";
 import PostCardLoader from "@/components/Skeletons/PostCardLoader";
 import { useSession } from "next-auth/react";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import { baseURL } from "@/lib/utils";
+
 const PostContainer = () => {
-  // const [postsList, setPostsList] = useState<Post[] | []>([]);
-  // const [page, setPage] = useState(1);
-  // const [loading, setLoading] = useState(false);
+  async function getAllPosts(jwt: string, page: number) {
+    try {
+      const response = await fetch(
+        `${baseURL}/post?limit=10&page=${page}&sort={"createdAt" : -1}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            projectID: process.env.NEXT_PUBLIC_PROJECT_ID as string,
+            Authorization: `Bearer ${jwt}`,
+          },
+        }
+      );
+
+      const data = await response.json();
+      if (data?.status === "fail") {
+        throw new Error(data?.message);
+      } else {
+        return data;
+      }
+    } catch (error) {
+      throw error;
+    }
+  }
 
   const { data: session, status } = useSession();
   const [loading, setLoading] = useState(true);
@@ -47,7 +69,6 @@ const PostContainer = () => {
     }
   }
 
-  
   // function handleGoToTop() {
   //   // window.scroll({ top: 0, behavior: "smooth" });
   //   window.scrollTo({ top: 0, behavior: "smooth" });
@@ -96,12 +117,14 @@ const PostContainer = () => {
 
   return (
     <div className=" w-full my-4 space-y-4 ">
-      {posts.length !== 0
+      {!loading
         ? posts?.map((post, index) => <HomePostCard key={index} post={post} />)
         : Array.from({ length: 10 }).map((_, index) => (
             <PostCardLoader key={index} />
           ))}
-      <p className="text-center text-neutral-500 text-sm w-full">No more Posts Available</p>
+      <p className="text-center text-neutral-500 text-sm w-full">
+        No more Posts Available
+      </p>
     </div>
   );
 };

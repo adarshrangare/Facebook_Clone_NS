@@ -50,3 +50,52 @@ export const adData = [
     link: "thesleepcompany.in",
   },
 ];
+
+
+export const menubarItems = [
+  {
+    title: "Pages",
+    imageLink: "https://static.xx.fbcdn.net/rsrc.php/v3/yS/r/aW4FjA5PhOT.png",
+    bgPosition: "0 -115px" 
+  },
+  {
+    title: "Friends",
+    imageLink: "https://static.xx.fbcdn.net/rsrc.php/v3/yS/r/aW4FjA5PhOT.png",
+    bgPosition: "0px -259px"
+  },
+  {
+    title: "Groups",
+    imageLink: "https://static.xx.fbcdn.net/rsrc.php/v3/yS/r/aW4FjA5PhOT.png",
+    bgPosition: "0 -39px" // Adjust this according to your needs
+  },
+  {
+    title: "Memories",
+    imageLink: "https://static.xx.fbcdn.net/rsrc.php/v3/yS/r/aW4FjA5PhOT.png",
+    bgPosition: "0 -408px" // Adjust this according to your needs
+  },
+  {
+    title: "Saved",
+    imageLink: "https://static.xx.fbcdn.net/rsrc.php/v3/yS/r/aW4FjA5PhOT.png",
+    bgPosition: "0 -149px" // Adjust this according to your needs
+  },
+  {
+    title: "Liked Posts",
+    imageLink: "https://static.xx.fbcdn.net/rsrc.php/v3/yS/r/aW4FjA5PhOT.png",
+    bgPosition: "0 0" // Adjust this according to your needs
+  },
+  {
+    title: "Play Games",
+    imageLink: "https://static.xx.fbcdn.net/rsrc.php/v3/yS/r/aW4FjA5PhOT.png",
+    bgPosition: "0 -74px" // Adjust this according to your needs
+  },
+  {
+    title: "Videos",
+    imageLink: "https://static.xx.fbcdn.net/rsrc.php/v3/yS/r/aW4FjA5PhOT.png",
+    bgPosition: "0 -482px" // Adjust this according to your needs
+  },
+  {
+    title: "Rewards",
+    imageLink: "https://static.xx.fbcdn.net/rsrc.php/v3/yS/r/aW4FjA5PhOT.png",
+    bgPosition: "0 -446px" // Adjust this according to your needs
+  }
+];
