@@ -30,8 +30,8 @@ const Menubar = ()=> {
           </div>
         </li>
 
-        {menubarItems.map((item) => (
-          <li className="pt-2 px-2 rounded-md cursor-pointer hover:bg-zinc-200 dark:hover:bg-hover-dark">
+        {menubarItems.map((item,index) => (
+          <li key={index} className="pt-2 px-2 rounded-md cursor-pointer hover:bg-zinc-200 dark:hover:bg-hover-dark">
             <div className="flex items-center gap-3  pb-2 dark:text-primary-dark text-primary-light">
               <i
                 className=""

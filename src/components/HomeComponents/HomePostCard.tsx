@@ -148,6 +148,7 @@ const HomePostCard = ({
                 onClick={() => {
                   setOpenConfirmModal(true);
                 }}
+                key={1}
               >
                 Delete
               </h1>,
@@ -155,6 +156,7 @@ const HomePostCard = ({
                 onClick={() => {
                   setOpenEditModal(true);
                 }}
+                key={2}
               >
                 Edit
               </h1>,
