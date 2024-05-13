@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import ProfileCardNav from "../Header/ProfileCardNav";
 import { GiMedicalPack } from "react-icons/gi";
 import { menubarItems } from "@/lib/utils";
@@ -14,7 +14,7 @@ const containerStyle = {
   display: "inline-block",
 };
 
-const Menubar = async () => {
+const Menubar = ()=> {
   return (
     <div className="sticky top-16 ">
       <ul className="w-full md:w-10/12 lg:w-9/12">

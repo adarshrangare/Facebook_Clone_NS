@@ -109,7 +109,7 @@ const HomePostCard = ({
   };
 
   return (
-    <div className=" max-w-md mx-auto py-2 bg-primary-light dark:bg-primary-dark shadow rounded-md ">
+    <div className=" max-w-md mx-auto py-2  bg-primary-light dark:bg-primary-dark shadow rounded-md ">
       <div className="author flex justify-between   px-2">
         <Link
           className="author flex items-center gap-4 mb-2 px-2"

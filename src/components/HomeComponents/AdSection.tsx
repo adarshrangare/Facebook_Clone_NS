@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import React from 'react'
 import { adData } from '@/lib/utils'
-const AdSection = async () => {
+const AdSection =  () => {
   return (
     <aside className='sticky top-16'>
 
