@@ -15,7 +15,9 @@ export default async function Home() {
         </section>
         <section className="col-start-2  col-end-4  container px-2 ">
           
-            <MainSection />
+            {/* <Suspense fallback={<h1>Loading</h1> }> */}
+              <MainSection />
+            {/* </Suspense> */}
           
         </section>
         <section className="col-start-4 relative px-2 max-md:hidden ">

@@ -18,6 +18,7 @@ import { HiDotsHorizontal } from "react-icons/hi";
 import MenuPopUp from "../Basic Components/MenuPopUp";
 import { useRouter } from "next/navigation";
 import EditPostModal from "./EditPostModal";
+import Comments from "./Comments";
 // import likePost from "../api/likePost";
 // import disLikePost from "../api/dislikePost";
 
@@ -53,7 +54,7 @@ const HomePostCard = ({
   const { data: session } = useSession();
   const userDetails: UserData = session?.user as UserData;
   const [menuOptions, setMenuOptions] = useState(menuOption);
-
+  const [openComments, setComments] = useState(true);
   useEffect(() => {
     // console.log(userDetails?.id)
     setMenuOptions(post.author._id === userDetails.id);
@@ -109,170 +110,218 @@ const HomePostCard = ({
   };
 
   return (
-    <div className=" max-w-md mx-auto py-2  bg-primary-light dark:bg-primary-dark shadow rounded-md ">
-      <div className="author flex justify-between   px-2">
-        <Link
-          className="author flex items-center gap-4 mb-2 px-2"
-          href={`/profile/${post.author._id}`}
-        >
-          {post.author.profileImage ? (
-            <Image
-              className="w-10 h-10 rounded-full"
-              src={post.author.profileImage}
-              width={24}
-              height={24}
-              alt={post.author.name}
-            />
-          ) : (
-            <UserIcon className="w-10 h-10 rounded-full bg-gray-200 dark:invert p-1.5 text-gray-800 " />
-          )}
-          <div>
-            <div className="font-semibold leading-5 text-primary-light dark:text-primary-dark ">
-              {post.author.name}
-            </div>
-            <div className="text-xs text-neutral-500">
-              {getTimeDiff(post.createdAt)}
-            </div>
-          </div>
-        </Link>
-        {menuOptions && (
-          <MenuPopUp
-            label={
-              <HiDotsHorizontal
-                size={24}
-                className="text-neutral-600 mr-2 hover:text-neutral-700 cursor-pointer "
+    <>
+      <div className=" max-w-md mx-auto py-2  bg-primary-light dark:bg-primary-dark shadow rounded-md ">
+        <div className="author flex justify-between   px-2">
+          <Link
+            className="author flex items-center gap-4 mb-2 px-2"
+            href={`/profile/${post.author._id}`}
+          >
+            {post.author.profileImage ? (
+              <Image
+                className="w-10 h-10 rounded-full"
+                src={post.author.profileImage}
+                width={24}
+                height={24}
+                alt={post.author.name}
               />
-            }
-            items={[
-              <h1
-                onClick={() => {
-                  setOpenConfirmModal(true);
-                }}
-                key={1}
-              >
-                Delete
-              </h1>,
-              <h1
-                onClick={() => {
-                  setOpenEditModal(true);
-                }}
-                key={2}
-              >
-                Edit
-              </h1>,
-            ]}
-          />
-        )}
-      </div>
-      <EditPostModal
-        id={post._id}
-        openEditModal={openEditModal}
-        handleClose={() => {
-          setOpenEditModal(false);
-        }}
-        description={post.content}
-        imagesList={post.images}
-      />
-      <Modal
-        open={openConfirmModal}
-        onCancel={() => {
-          setOpenConfirmModal(false);
-        }}
-        zIndex={2}
-        centered={true}
-        closeIcon={null}
-        okText="Confirm"
-        okButtonProps={{
-          className: "font-medium border-none  bg-[#2176ff] mx-4 dark:invert",
-        }}
-        cancelButtonProps={{
-          className: "font-medium border-none  mx-4 ",
-        }}
-        className="dark:invert "
-        onOk={() => {
-          handleDelete();
-          setOpenConfirmModal(false);
-        }}
-      >
-        <h1 className="font-medium pb-4 text-lg">
-          Do you Really want to Delete this Post?
-        </h1>
-      </Modal>
-
-      <div className="captions px-4 pb-2 text-primary-light dark:text-primary-dark text-[15px] ">
-        <p className="font-medium">{post.title}</p>
-        <p>{post.content}</p>
-      </div>
-      {/* // image Area */}
-      {post.images.length !== 0 && (
-        <div className="image relative">
-          <Link href={`/post/${post._id}`}>
-            <Carousel className="w-full" ref={carouselRef} dots={false}>
-              {post.images.map((img: string, index: number) => (
-                <Image
-                  key={index}
-                  priority
-                  alt={post.title}
-                  width={400}
-                  height={400}
-                  src={img}
-                />
-              ))}
-            </Carousel>
+            ) : (
+              <UserIcon className="w-10 h-10 rounded-full bg-gray-200 dark:invert p-1.5 text-gray-800 " />
+            )}
+            <div>
+              <div className="font-semibold leading-5 text-primary-light dark:text-primary-dark ">
+                {post.author.name}
+              </div>
+              <div className="text-xs text-neutral-500">
+                {getTimeDiff(post.createdAt)}
+              </div>
+            </div>
           </Link>
-
-          {post.images.length > 1 && (
-            <div className="absolute top-1/2 buttons w-full flex justify-between">
-              <button
-                onClick={() => {
-                  carouselRef.current.prev();
-                }}
-              >
-                <ChevronLeftIcon className="w-8 h-8 text-neutral-500" />
-              </button>
-              <button
-                onClick={() => {
-                  carouselRef.current.next();
-                }}
-              >
-                <ChevronRightIcon className="w-8 h-8 text-neutral-500" />
-              </button>
-            </div>
+          {menuOptions && (
+            <MenuPopUp
+              label={
+                <HiDotsHorizontal
+                  size={24}
+                  className="text-neutral-600 mr-2 hover:text-neutral-700 cursor-pointer "
+                />
+              }
+              items={[
+                <h1
+                  onClick={() => {
+                    setOpenConfirmModal(true);
+                  }}
+                  key={1}
+                >
+                  Delete
+                </h1>,
+                <h1
+                  onClick={() => {
+                    setOpenEditModal(true);
+                  }}
+                  key={2}
+                >
+                  Edit
+                </h1>,
+              ]}
+            />
           )}
         </div>
-      )}
-      {/* Like and comment count */}
-      <div className="counts flex justify-between items-center px-4 ">
-        <Link href={`/post/${post._id}`}>
-          <div className="flex gap-1.5 my-2 font-light opacity-85 text-primary-light dark:text-primary-dark text-sm cursor-pointer">
-            <Image src={logos.like} alt="like" width={18} height={18} />
-            <span>{likeCount}</span>
+        <EditPostModal
+          id={post._id}
+          openEditModal={openEditModal}
+          handleClose={() => {
+            setOpenEditModal(false);
+          }}
+          description={post.content}
+          imagesList={post.images}
+        />
+        <Modal
+          open={openConfirmModal}
+          onCancel={() => {
+            setOpenConfirmModal(false);
+          }}
+          zIndex={2}
+          centered={true}
+          closeIcon={null}
+          okText="Confirm"
+          okButtonProps={{
+            className: "font-medium border-none  bg-[#2176ff] mx-4 dark:invert",
+          }}
+          cancelButtonProps={{
+            className: "font-medium border-none  mx-4 ",
+          }}
+          className="dark:invert "
+          onOk={() => {
+            handleDelete();
+            setOpenConfirmModal(false);
+          }}
+        >
+          <h1 className="font-medium pb-4 text-lg">
+            Do you Really want to Delete this Post?
+          </h1>
+        </Modal>
+        <div className="captions px-4 pb-2 text-primary-light dark:text-primary-dark text-[15px] ">
+          <p className="font-medium">{post.title}</p>
+          <p>{post.content}</p>
+        </div>
+        {/* // image Area */}
+        {post.images.length !== 0 && (
+          <div className="image relative">
+            <Link href={`/post/${post._id}`}>
+              <Carousel className="w-full" ref={carouselRef} dots={false}>
+                {post.images.map((img: string, index: number) => (
+                  <Image
+                    key={index}
+                    priority
+                    alt={post.title}
+                    width={400}
+                    height={400}
+                    src={img}
+                  />
+                ))}
+              </Carousel>
+            </Link>
+            {post.images.length > 1 && (
+              <div className="absolute top-1/2 buttons w-full flex justify-between">
+                <button
+                  onClick={() => {
+                    carouselRef.current.prev();
+                  }}
+                >
+                  <ChevronLeftIcon className="w-8 h-8 text-neutral-500" />
+                </button>
+                <button
+                  onClick={() => {
+                    carouselRef.current.next();
+                  }}
+                >
+                  <ChevronRightIcon className="w-8 h-8 text-neutral-500" />
+                </button>
+              </div>
+            )}
           </div>
-        </Link>
-        <Link href={`/post/${post._id}`}>
-          <div className="flex gap-1.5 my-2 font-light opacity-85 text-primary-light dark:text-primary-dark text-sm cursor-pointer">
-            <span className="hover:underline">{post.commentCount}</span>
-            <ChatBubbleOvalLeftIcon className="w-5 h-5 opacity-80" />
-          </div>
-        </Link>
-      </div>
-
-      {/* Like and Comment Section */}
-      <div className=" w-full ">
-        <div className="w-11/12 mx-auto border-t flex pt-2 ">
-          {liked ? (
+        )}
+        {/* Like and comment count */}
+        <div className="counts flex justify-between items-center px-4 ">
+          <Link href={`/post/${post._id}`}>
+            <div className="flex gap-1.5 my-2 font-light opacity-85 text-primary-light dark:text-primary-dark text-sm cursor-pointer">
+              <Image src={logos.like} alt="like" width={18} height={18} />
+              <span>{likeCount}</span>
+            </div>
+          </Link>
+          <Link href={`/post/${post._id}`}>
+            <div className="flex gap-1.5 my-2 font-light opacity-85 text-primary-light dark:text-primary-dark text-sm cursor-pointer">
+              <span className="hover:underline">{post.commentCount}</span>
+              <ChatBubbleOvalLeftIcon className="w-5 h-5 opacity-80" />
+            </div>
+          </Link>
+        </div>
+        {/* Like and Comment Section */}
+        <div className=" w-full select-none ">
+          <div className="w-11/12 mx-auto border-t flex pt-2 ">
+            {liked ? (
+              <div
+                className={`flex  gap-2 rounded-md hover:bg-hover-light dark:hover:bg-hover-dark w-fit p-2 py-3 cursor-pointer text-sm font-semibold text-neutral-500 dark:text-neutral-400 text-center flex-1 items-center justify-center `}
+                onClick={() => {
+                  handleDislike();
+                }}
+              >
+                <i
+                  className={`   ${liked ? " opacity-100 duration-100" : ""}`}
+                  style={{
+                    backgroundImage:
+                      "url(https://static.xx.fbcdn.net/rsrc.php/v3/y7/r/GAaxJlSQY0r.png)",
+                    backgroundPosition: `${
+                      liked ? "0px -676px" : "0px -739px"
+                    }`,
+                    backgroundSize: "25px 1427px",
+                    width: "20px",
+                    height: "20px",
+                    backgroundRepeat: "no-repeat",
+                    display: "inline-block",
+                  }}
+                ></i>
+                <span className={`${liked ? "text-blue-500" : ""}`}>Like</span>
+              </div>
+            ) : (
+              <div
+                className={`flex  gap-2 rounded-md hover:bg-hover-light dark:hover:bg-hover-dark w-fit p-2 py-3 cursor-pointer text-sm font-semibold text-neutral-500 dark:text-neutral-400 text-center flex-1 items-center justify-center `}
+                onClick={() => {
+                  handleLike();
+                }}
+              >
+                <i
+                  className={`opacity-70  dark:invert ${
+                    liked ? " opacity-100 duration-100" : ""
+                  }`}
+                  style={{
+                    backgroundImage:
+                      "url(https://static.xx.fbcdn.net/rsrc.php/v3/y7/r/GAaxJlSQY0r.png)",
+                    backgroundPosition: `${
+                      liked ? "0px -676px" : "0px -739px"
+                    }`,
+                    backgroundSize: "25px 1427px",
+                    width: "20px",
+                    height: "20px",
+                    backgroundRepeat: "no-repeat",
+                    display: "inline-block",
+                  }}
+                ></i>
+                <span className={`${liked ? "text-blue-500" : ""}`}>Like</span>
+              </div>
+            )}
             <div
-              className={`flex  gap-2 rounded-md hover:bg-hover-light dark:hover:bg-hover-dark w-fit p-2 py-3 cursor-pointer text-sm font-semibold text-neutral-500 dark:text-neutral-400 text-center flex-1 items-center justify-center `}
               onClick={() => {
-                handleDislike();
+                setComments((prev) => !prev);
               }}
+              className="flex  gap-2 rounded-md hover:bg-hover-light dark:hover:bg-hover-dark w-fit p-2 py-3 cursor-pointer text-sm font-semibold text-neutral-500 dark:text-neutral-400 text-center flex-1 items-center justify-center"
             >
               <i
-                className={`   ${liked ? " opacity-100 duration-100" : ""}`}
+                className="opacity-70  dark:invert"
                 style={{
                   backgroundImage:
                     "url(https://static.xx.fbcdn.net/rsrc.php/v3/y7/r/GAaxJlSQY0r.png)",
-                  backgroundPosition: `${liked ? "0px -676px" : "0px -739px"}`,
+                  backgroundPosition: "0px -550px",
                   backgroundSize: "25px 1427px",
                   width: "20px",
                   height: "20px",
@@ -280,24 +329,15 @@ const HomePostCard = ({
                   display: "inline-block",
                 }}
               ></i>
-
-              <span className={`${liked ? "text-blue-500" : ""}`}>Like</span>
+              <span>Comment</span>
             </div>
-          ) : (
-            <div
-              className={`flex  gap-2 rounded-md hover:bg-hover-light dark:hover:bg-hover-dark w-fit p-2 py-3 cursor-pointer text-sm font-semibold text-neutral-500 dark:text-neutral-400 text-center flex-1 items-center justify-center `}
-              onClick={() => {
-                handleLike();
-              }}
-            >
+            <div className="flex gap-2 rounded-md hover:bg-hover-light dark:hover:bg-hover-dark w-fit p-2 py-3 cursor-pointer text-sm font-semibold text-neutral-500 dark:text-neutral-400 text-center flex-1 items-center justify-center">
               <i
-                className={`opacity-70  dark:invert ${
-                  liked ? " opacity-100 duration-100" : ""
-                }`}
+                className="opacity-70 dark:invert"
                 style={{
                   backgroundImage:
                     "url(https://static.xx.fbcdn.net/rsrc.php/v3/y7/r/GAaxJlSQY0r.png)",
-                  backgroundPosition: `${liked ? "0px -676px" : "0px -739px"}`,
+                  backgroundPosition: "0px -886px",
                   backgroundSize: "25px 1427px",
                   width: "20px",
                   height: "20px",
@@ -305,45 +345,13 @@ const HomePostCard = ({
                   display: "inline-block",
                 }}
               ></i>
-
-              <span className={`${liked ? "text-blue-500" : ""}`}>Like</span>
+              <span>Share</span>
             </div>
-          )}
-          <div className="flex  gap-2 rounded-md hover:bg-hover-light dark:hover:bg-hover-dark w-fit p-2 py-3 cursor-pointer text-sm font-semibold text-neutral-500 dark:text-neutral-400 text-center flex-1 items-center justify-center">
-            <i
-              className="opacity-70  dark:invert"
-              style={{
-                backgroundImage:
-                  "url(https://static.xx.fbcdn.net/rsrc.php/v3/y7/r/GAaxJlSQY0r.png)",
-                backgroundPosition: "0px -550px",
-                backgroundSize: "25px 1427px",
-                width: "20px",
-                height: "20px",
-                backgroundRepeat: "no-repeat",
-                display: "inline-block",
-              }}
-            ></i>
-            <span>Comment</span>
-          </div>
-          <div className="flex gap-2 rounded-md hover:bg-hover-light dark:hover:bg-hover-dark w-fit p-2 py-3 cursor-pointer text-sm font-semibold text-neutral-500 dark:text-neutral-400 text-center flex-1 items-center justify-center">
-            <i
-              className="opacity-70 dark:invert"
-              style={{
-                backgroundImage:
-                  "url(https://static.xx.fbcdn.net/rsrc.php/v3/y7/r/GAaxJlSQY0r.png)",
-                backgroundPosition: "0px -886px",
-                backgroundSize: "25px 1427px",
-                width: "20px",
-                height: "20px",
-                backgroundRepeat: "no-repeat",
-                display: "inline-block",
-              }}
-            ></i>
-            <span>Share</span>
           </div>
         </div>
+      {openComments && <Comments postId={post._id} />}
       </div>
-    </div>
+    </>
   );
 };
 

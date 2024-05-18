@@ -1,5 +1,6 @@
-"use client"
+// "use client"
 import { Header } from '@/components'
+import { useParams } from 'next/navigation'
 import React from 'react'
 
 const Post = async ({params}:{params:{id:string} | undefined}) => {

@@ -6,7 +6,7 @@ import React from "react";
 
 const PostCardLoader = () => {
   return (
-    <div className=" max-w-md mx-auto py-2 bg-primary-light dark:bg-primary-dark shadow rounded-md ">
+    <div className=" max-w-md mx-auto min-h-60 py-2 bg-primary-light dark:bg-primary-dark shadow rounded-md ">
       <div className="author flex items-center gap-4 mb-2 px-2">
         <SkeletonAvatar active size={"large"} className="dark:invert" />
         <Skeleton paragraph={{rows:0}} active className="dark:invert pt-4" />
