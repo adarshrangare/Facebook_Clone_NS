@@ -12,42 +12,39 @@ const PostInteraction = () => {
 
   const { data: session } = useSession();
 
-  async function getPost() {
-    console.log("...getting Post Data...")
-    try {
-      const res = await fetch(
-        `https://academics.newtonschool.co/api/v1/facebook/post/${id}`,
-        {
-          headers: {
-            Authorization: `Bearer ${session?.token}`,
-            projectId: process.env.NEXT_PUBLIC_PROJECT_ID as string,
-          },
-        }
-      );
-
-      const data = await res.json();
-
-      console.log({data});
-
-      if (data.status === "success") {
-        setPost(data?.data);
-      } else {
-        toast.error("Unable to get Data from Server");
-      }
-    } catch (error: any) {
-      // toast.error(error?.message);
-    }
-  }
-
   useEffect(() => {
+    async function getPost() {
+      // console.log("...getting Post Data...");
+      try {
+        const res = await fetch(
+          `https://academics.newtonschool.co/api/v1/facebook/post/${id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${session?.token}`,
+              projectId: process.env.NEXT_PUBLIC_PROJECT_ID as string,
+            },
+          }
+        );
 
+        const data = await res.json();
+
+        console.log({ data });
+
+        if (data.status === "success") {
+          setPost(data?.data);
+        } else {
+          toast.error("Unable to get Data from Server");
+        }
+      } catch (error: any) {
+        // toast.error(error?.message);
+      }
+    }
     getPost();
-
   }, []);
 
   return (
     <div className="flex-1">
-      <HomePostCard post={post as Post} removeImages={true} comments={true} />
+      {post && <HomePostCard post={post as Post} removeImages={true} comments={true} />}
 
       {/* po */}
     </div>

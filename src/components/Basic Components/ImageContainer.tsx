@@ -1,32 +1,49 @@
+"use client";
 import { Carousel } from "antd";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-export default async function ImageContainer({ postId }: { postId: string | undefined }) {
- 
+export default function ImageContainer({
+  postId,
+}: {
+  postId: string | undefined;
+}) {
+  const [images, setImages] = useState<string[] | [] | null>(null);
+
+  async function getImages() {
     const res = await fetch(
-        `https://academics.newtonschool.co/api/v1/facebook/post/${postId}`,
-        {
-          headers: {
-            projectId: process.env.PROJECT_ID as string,
-          },
-        }
-      );
-    
-      const data = await res.json();
-        // console.log(data);
-      const images  = data?.data?.images;
-        console.log(images);
-  return (<div className="flex  w-full h-full items-center justify-center p-4 relative">
+      `https://academics.newtonschool.co/api/v1/facebook/post/${postId}`,
+      {
+        headers: {
+          projectId: process.env.NEXT_PUBLIC_PROJECT_ID as string,
+        },
+      }
+    );
 
-    <Carousel autoplay >
+    const data = await res.json();
+    // console.log(data);
+    setImages(data?.data?.images);
+    // console.log(images);
+  }
 
-    {
-        images?.map((image:string) => (<Image key={image} src={image} alt={data?.data?.content} width={600} height={600} className="max-w-10/12 max-h-10/12" />))
+  useEffect(() => {
+    getImages();
+  }, []);
 
-    }
-    
-    </Carousel>
-
-  </div>);
+  return (
+    <div className="flex  w-full h-full items-center justify-center p-4 relative">
+      <Carousel autoplay>
+        {images?.map((image: string) => (
+          <Image
+            key={image}
+            src={image}
+            alt={image}
+            width={600}
+            height={600}
+            className="max-w-10/12 max-h-10/12"
+          />
+        ))}
+      </Carousel>
+    </div>
+  );
 }

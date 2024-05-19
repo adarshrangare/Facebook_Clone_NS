@@ -17,12 +17,12 @@ const Post = async ({params}:{params:{id:string} | undefined}) => {
       {/* </div> */}
       <div className='w-11/12 h-full mx-auto flex'>
         <div className="img md:basis-3/4  h-full">
-            {/* @ts-expect-error Server Component */}
+ 
             <ImageContainer postId={params?.id}/>
 
 
         </div>
-      <div className="interaction w-full flex items-center max-w-md  h-full max-h-full overflow-y-auto">
+      <div className="interaction w-full flex items-center max-w-md bg-slate-400 h-full max-h-full overflow-y-auto">
 
         <PostInteraction/>
 

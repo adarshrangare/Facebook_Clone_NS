@@ -26,7 +26,7 @@ const HomePostCard = ({
   post,
   menuOption = false,
   removeImages = false,
-  comments = false
+  comments
 }: {
   post: Post;
   menuOption?: true | false;
@@ -58,7 +58,7 @@ const HomePostCard = ({
   const { data: session } = useSession();
   const userDetails: UserData = session?.user as UserData;
   const [menuOptions, setMenuOptions] = useState(menuOption);
-  const [openComments, setComments] = useState(comments);
+  const [openComments, setComments] = useState(comments || false);
   useEffect(() => {
     // console.log(userDetails?.id)
     setMenuOptions(post?.author?._id === userDetails.id);
@@ -253,12 +253,14 @@ const HomePostCard = ({
               <span>{likeCount}</span>
             </div>
           </Link>
-          <Link href={`/post/${post?._id}`}>
+          <div onClick={() => {
+                setComments((prev) => !prev);
+              }}>
             <div className="flex gap-1.5 my-2 font-light opacity-85 text-primary-light dark:text-primary-dark text-sm cursor-pointer">
               <span className="hover:underline">{post?.commentCount}</span>
               <ChatBubbleOvalLeftIcon className="w-5 h-5 opacity-80" />
             </div>
-          </Link>
+          </div>
         </div>
         {/* Like and Comment Section */}
         <div className=" w-full select-none ">
