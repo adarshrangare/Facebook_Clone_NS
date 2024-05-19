@@ -37,8 +37,8 @@ const CommentsContainer = ({
   return (
     <div className="w-full max-w-md px-2 py-2 border-t space-y-2 max-h-72 overflow-y-auto">
       {comments
-        ? comments?.map((comment: Comment) => (
-            <div className="bg-compo-light dark:bg-compo-dark rounded-2xl p-2 relative">
+        ? comments?.map((comment: Comment,index) => (
+            <div key={index} className="bg-compo-light dark:bg-compo-dark rounded-2xl p-2 relative">
               {comment.author_details?._id === user.id && (
                 <MenuPopUp
                   label={
