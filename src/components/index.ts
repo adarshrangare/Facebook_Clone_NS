@@ -7,7 +7,11 @@ import Header from "./Header/Header";
 import Footer from "./Footer/Footer";
 import MainSection from "./HomeComponents/MainSection";
 import MenuPopUp from "./Basic Components/MenuPopUp";
+import ImageContainer from "./Basic Components/ImageContainer";
+import PostInteraction from "./Basic Components/PostInteraction";
 export {
+  PostInteraction,
+  ImageContainer,
   Login,
   InputBox,
   Menubar,

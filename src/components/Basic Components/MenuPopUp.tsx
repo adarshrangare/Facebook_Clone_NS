@@ -30,12 +30,12 @@ const MenuPopUp = ({
         onMouseLeave={() => {
           setOpenMenu(false);
         }}
-        className={`itemsList absolute top-5 right-0 shadow-md border bg-white p-1 dark:bg-compo-dark rounded-xl dark:border-black/50  z-20 origin-top ${
+        className={`itemsList absolute top-5 right-0 shadow-md border bg-white p-1 dark:bg-compo-dark rounded-lg dark:border-black/50  z-20 origin-top ${
           openMenu ? "scale-100" : "scale-0"
         }`}
       >
         {items?.map((item, index) => (
-          <li key={index} className="py-1 hover:bg-black/10 text-sm px-6 rounded-lg hover:scale-105 cursor-pointer ">
+          <li key={index} className="py-1 hover:bg-black/10 text-sm px-6 rounded-md hover:scale-105 cursor-pointer ">
             {item}
           </li>
         ))}

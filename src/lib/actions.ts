@@ -177,6 +177,52 @@ export async function editAPost(jwt:string, formData:FormData, id:string) {
 	}
 }
 
+
+export async function postAComment(jwt:string, postid:string, comment:string) {
+	try {
+		const data = await fetch(
+			`https://academics.newtonschool.co/api/v1/facebook/comment/${postid}`,
+			{
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+					projectID: projectID,
+					Authorization: `Bearer ${jwt}`,
+				},
+				body: JSON.stringify({ content: comment }),
+			}
+		);
+		const res = await data.json();
+		if (res.status === "success") {
+			return { message: "success" };
+		}
+
+		return { message: res?.message };
+	} catch (error) {
+		return { message: "error" };
+	}
+}
+
+
+export async function deleteComment(jwt:string, commentId:string) {
+	try {
+		const data = await fetch(
+			`https://academics.newtonschool.co/api/v1/quora/comment/${commentId}`,
+			{
+				method: "DELETE",
+				headers: {
+					projectID: projectID,
+					Authorization: `Bearer ${jwt}`,
+				},
+			}
+		);
+		return { message: "success" };
+	} catch (error) {
+		return { message: "error" };
+	}
+}
+
+
 // export async function getPostDetail(jwt, postID) {
 // 	try {
 // 		const data = await fetch(
@@ -433,30 +479,7 @@ export async function editAPost(jwt:string, formData:FormData, id:string) {
 // 		return { message: "error" };
 // 	}
 // }
-// export async function postComment(jwt, postid, comment) {
-// 	try {
-// 		const data = await fetch(
-// 			`https://academics.newtonschool.co/api/v1/quora/comment/${postid}`,
-// 			{
-// 				method: "POST",
-// 				headers: {
-// 					"Content-Type": "application/json",
-// 					projectID: projectID,
-// 					Authorization: `Bearer ${jwt}`,
-// 				},
-// 				body: JSON.stringify({ content: comment }),
-// 			}
-// 		);
-// 		const res = await data.json();
-// 		if (res.status === "success") {
-// 			return { message: "success" };
-// 		}
 
-// 		return { message: "fail" };
-// 	} catch (error) {
-// 		return { message: "error" };
-// 	}
-// }
 // export async function editComment(jwt, commentID, comment) {
 // 	try {
 // 		const data = await fetch(
@@ -479,23 +502,7 @@ export async function editAPost(jwt:string, formData:FormData, id:string) {
 // 		return { message: "error" };
 // 	}
 // }
-// export async function deleteComment(jwt, commentID) {
-// 	try {
-// 		const data = await fetch(
-// 			`https://academics.newtonschool.co/api/v1/quora/comment/${commentID}`,
-// 			{
-// 				method: "DELETE",
-// 				headers: {
-// 					projectID: projectID,
-// 					Authorization: `Bearer ${jwt}`,
-// 				},
-// 			}
-// 		);
-// 		return { message: "success" };
-// 	} catch (error) {
-// 		return { message: "error" };
-// 	}
-// }
+
 // export async function searchData(jwt, query, limited = false) {
 // 	let result = {};
 // 	try {

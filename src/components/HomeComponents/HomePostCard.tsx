@@ -25,9 +25,13 @@ import Comments from "./Comments";
 const HomePostCard = ({
   post,
   menuOption = false,
+  removeImages = false,
+  comments = false
 }: {
   post: Post;
   menuOption?: true | false;
+  removeImages?:boolean;
+  comments?:boolean
 }) => {
   const getTimeDiff = (postDate: string) => {
     const currentDay = dayjs();
@@ -48,23 +52,23 @@ const HomePostCard = ({
   };
 
   const carouselRef = useRef<any>();
-  const [liked, setLiked] = useState(post.isLiked || false);
-  const [likeCount, setLikeCount] = useState(post.likeCount);
+  const [liked, setLiked] = useState(post?.isLiked || false);
+  const [likeCount, setLikeCount] = useState(post?.likeCount);
 
   const { data: session } = useSession();
   const userDetails: UserData = session?.user as UserData;
   const [menuOptions, setMenuOptions] = useState(menuOption);
-  const [openComments, setComments] = useState(true);
+  const [openComments, setComments] = useState(comments);
   useEffect(() => {
     // console.log(userDetails?.id)
-    setMenuOptions(post.author._id === userDetails.id);
+    setMenuOptions(post?.author?._id === userDetails.id);
   }, []);
 
   // console.log(menuOption)
 
   const handleLike = async () => {
     // console.log(token)
-    const response = await likePost(session?.token as string, post._id, "POST");
+    const response = await likePost(session?.token as string, post?._id, "POST");
     if (response.message === "success") {
       setLiked(true);
       setLikeCount((prev) => prev + 1);
@@ -97,7 +101,7 @@ const HomePostCard = ({
     const resposne = await deletePost(session?.token as string, post._id);
 
     console.log(resposne);
-    if (resposne.message === "success") {
+    if (resposne?.message === "success") {
       toast.success("Post is deleted Successfully");
       if (window) {
         window.location.reload();
@@ -115,25 +119,25 @@ const HomePostCard = ({
         <div className="author flex justify-between   px-2">
           <Link
             className="author flex items-center gap-4 mb-2 px-2"
-            href={`/profile/${post.author._id}`}
+            href={`/profile/${post?.author?._id}`}
           >
-            {post.author.profileImage ? (
+            {post?.author?.profileImage ? (
               <Image
                 className="w-10 h-10 rounded-full"
-                src={post.author.profileImage}
+                src={post?.author?.profileImage}
                 width={24}
                 height={24}
-                alt={post.author.name}
+                alt={post?.author?.name}
               />
             ) : (
               <UserIcon className="w-10 h-10 rounded-full bg-gray-200 dark:invert p-1.5 text-gray-800 " />
             )}
             <div>
               <div className="font-semibold leading-5 text-primary-light dark:text-primary-dark ">
-                {post.author.name}
+                {post?.author?.name}
               </div>
               <div className="text-xs text-neutral-500">
-                {getTimeDiff(post.createdAt)}
+                {getTimeDiff(post?.createdAt)}
               </div>
             </div>
           </Link>
@@ -167,13 +171,13 @@ const HomePostCard = ({
           )}
         </div>
         <EditPostModal
-          id={post._id}
+          id={post?._id}
           openEditModal={openEditModal}
           handleClose={() => {
             setOpenEditModal(false);
           }}
-          description={post.content}
-          imagesList={post.images}
+          description={post?.content}
+          imagesList={post?.images}
         />
         <Modal
           open={openConfirmModal}
@@ -201,19 +205,19 @@ const HomePostCard = ({
           </h1>
         </Modal>
         <div className="captions px-4 pb-2 text-primary-light dark:text-primary-dark text-[15px] ">
-          <p className="font-medium">{post.title}</p>
-          <p>{post.content}</p>
+          <p className="font-medium">{post?.title}</p>
+          <p>{post?.content}</p>
         </div>
         {/* // image Area */}
-        {post.images.length !== 0 && (
+        {!removeImages &&  post?.images?.length !== 0 && (
           <div className="image relative">
             <Link href={`/post/${post._id}`}>
               <Carousel className="w-full" ref={carouselRef} dots={false}>
-                {post.images.map((img: string, index: number) => (
+                {post?.images?.map((img: string, index: number) => (
                   <Image
                     key={index}
                     priority
-                    alt={post.title}
+                    alt={post?.title || post?.content}
                     width={400}
                     height={400}
                     src={img}
@@ -221,7 +225,7 @@ const HomePostCard = ({
                 ))}
               </Carousel>
             </Link>
-            {post.images.length > 1 && (
+            {post?.images?.length > 1 && (
               <div className="absolute top-1/2 buttons w-full flex justify-between">
                 <button
                   onClick={() => {
@@ -243,15 +247,15 @@ const HomePostCard = ({
         )}
         {/* Like and comment count */}
         <div className="counts flex justify-between items-center px-4 ">
-          <Link href={`/post/${post._id}`}>
+          <Link href={`/post/${post?._id}`}>
             <div className="flex gap-1.5 my-2 font-light opacity-85 text-primary-light dark:text-primary-dark text-sm cursor-pointer">
               <Image src={logos.like} alt="like" width={18} height={18} />
               <span>{likeCount}</span>
             </div>
           </Link>
-          <Link href={`/post/${post._id}`}>
+          <Link href={`/post/${post?._id}`}>
             <div className="flex gap-1.5 my-2 font-light opacity-85 text-primary-light dark:text-primary-dark text-sm cursor-pointer">
-              <span className="hover:underline">{post.commentCount}</span>
+              <span className="hover:underline">{post?.commentCount}</span>
               <ChatBubbleOvalLeftIcon className="w-5 h-5 opacity-80" />
             </div>
           </Link>
@@ -349,7 +353,7 @@ const HomePostCard = ({
             </div>
           </div>
         </div>
-      {openComments && <Comments postId={post._id} />}
+        {openComments && <Comments postId={post?._id} />}
       </div>
     </>
   );

@@ -8,6 +8,7 @@ import { UserData } from "@/lib/definations";
 import CreatePostModal from "./CreatePostModal";
 
 
+
 const CreatePost = () => {
   const [openCreatePostModal, setOpenCreatePostModal] = useState(false);
   const { data: session } = useSession();

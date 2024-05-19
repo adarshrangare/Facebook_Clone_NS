@@ -61,3 +61,30 @@ export interface Post {
   likeCount: number;
   commentCount: number;
 }
+
+
+export interface User {
+  email: string;
+  exp: number;
+  iat: number;
+  id: string;
+  image: string;
+  jti: string;
+  jwt: string;
+  name: string;
+  profileImage: string | null;
+}
+
+export interface Comment {
+  _id?: string;
+  content?: string;
+  author?: string;
+  post?: string;
+  parentComment?: string | null;
+  children?: Comment[];
+  isEdited?: boolean;
+  createdAt?: string;
+  updatedAt?: string;
+  __v?: number;
+  author_details?: UserData | null;
+}
