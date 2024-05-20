@@ -41,6 +41,7 @@ export interface UserData {
   education?: any[]; // Update this with the correct type if needed
   createdAt?: string;
   __v?: number;
+  isFollowed?:boolean;
 }
 
 export interface Author {

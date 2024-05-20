@@ -1,6 +1,6 @@
 import FacebookIcon from '@/assets/FacebookIcon'
 import PostCardLoader from '@/components/Skeletons/PostCardLoader'
-import { Skeleton } from 'antd'
+
 import SkeletonImage from 'antd/es/skeleton/Image'
 import React from 'react'
 
@@ -17,9 +17,9 @@ const loading = () => {
 
 
       </div>
-    <div className="interaction w-full flex items-center max-w-md bg-slate-400 h-full max-h-full overflow-y-auto">
+    <div className="interaction w-full flex items-center max-w-md bg-primary-light dark:bg-primary-dark h-full max-h-full overflow-y-auto">
 
-      <PostCardLoader/>
+      <div className="flex-1"><PostCardLoader/></div>
 
     </div>
     </div>

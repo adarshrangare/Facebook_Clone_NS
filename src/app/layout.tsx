@@ -19,16 +19,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-        
-        <SessionContext>
-          <body className={`${inter.className} bg-body-light dark:bg-body-dark text-primary-light dark:text-primary-dark`}>
-      <ThemeContext>
+      <SessionContext>
+        <body
+          className={`${inter.className} bg-body-light dark:bg-body-dark text-primary-light dark:text-primary-dark`}
+        >
+          <ThemeContext>
             <Toaster position="bottom-center" />
             {children}
-            <Footer/>
-      </ThemeContext>
-          </body>
-        </SessionContext>
+            <Footer />
+          </ThemeContext>
+        </body>
+      </SessionContext>
     </html>
   );
 }

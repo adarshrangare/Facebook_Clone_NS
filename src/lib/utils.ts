@@ -99,3 +99,13 @@ export const menubarItems = [
     bgPosition: "0 -446px" // Adjust this according to your needs
   }
 ];
+
+
+export const aboutIcons = {
+  skills:"https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/5tbk93Za84D.png",
+  work : "https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/XF1fUskiRxe.png",
+  education : "https://static.xx.fbcdn.net/rsrc.php/v3/y3/r/vGSgEwj4UxE.png",
+  address : "https://static.xx.fbcdn.net/rsrc.php/v3/yz/r/Uz5t6xIYc84.png",
+  email : "https://static.xx.fbcdn.net/rsrc.php/v3/ya/r/vKPF8R4VXuJ.png",
+  joined:"https://static.xx.fbcdn.net/rsrc.php/v3/y-/r/olD6qzqyixJ.png"
+}

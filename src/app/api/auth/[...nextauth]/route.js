@@ -24,6 +24,7 @@ const handler = NextAuth({
         session.user = { ...token};
         session.token = token.jwt
         session.userId = token.id 
+        session.image = "test"
         return session;
     },
     async jwt({ token, user,account }) {

@@ -23,11 +23,13 @@ import Comments from "./Comments";
 // import disLikePost from "../api/dislikePost";
 
 const HomePostCard = ({
+  onlyPost=false,
   post,
   menuOption = false,
   removeImages = false,
   comments
 }: {
+  onlyPost?:true|false
   post: Post;
   menuOption?: true | false;
   removeImages?:boolean;
@@ -116,7 +118,7 @@ const HomePostCard = ({
   return (
     <>
       <div className=" max-w-md mx-auto py-2  bg-primary-light dark:bg-primary-dark shadow rounded-md ">
-        <div className="author flex justify-between   px-2">
+        {!onlyPost && <div className="author flex justify-between   px-2">
           <Link
             className="author flex items-center gap-4 mb-2 px-2"
             href={`/profile/${post?.author?._id}`}
@@ -169,7 +171,7 @@ const HomePostCard = ({
               ]}
             />
           )}
-        </div>
+        </div>}
         <EditPostModal
           id={post?._id}
           openEditModal={openEditModal}
@@ -246,7 +248,7 @@ const HomePostCard = ({
           </div>
         )}
         {/* Like and comment count */}
-        <div className="counts flex justify-between items-center px-4 ">
+        {!onlyPost &&<div className="counts flex justify-between items-center px-4 ">
           <Link href={`/post/${post?._id}`}>
             <div className="flex gap-1.5 my-2 font-light opacity-85 text-primary-light dark:text-primary-dark text-sm cursor-pointer">
               <Image src={logos.like} alt="like" width={18} height={18} />
@@ -261,9 +263,9 @@ const HomePostCard = ({
               <ChatBubbleOvalLeftIcon className="w-5 h-5 opacity-80" />
             </div>
           </div>
-        </div>
+        </div>}
         {/* Like and Comment Section */}
-        <div className=" w-full select-none ">
+        {!onlyPost && <div className=" w-full select-none ">
           <div className="w-11/12 mx-auto border-t flex pt-2 ">
             {liked ? (
               <div
@@ -354,7 +356,7 @@ const HomePostCard = ({
               <span>Share</span>
             </div>
           </div>
-        </div>
+        </div>} 
         {openComments && <Comments postId={post?._id} />}
       </div>
     </>
