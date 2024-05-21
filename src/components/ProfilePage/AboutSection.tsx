@@ -7,6 +7,8 @@ import React from "react";
 const AboutSection = ({ userInfo }: { userInfo: UserData | null }) => {
   // const {skills,address,workExprience,education,createdAt} = userInfo as UserData
 
+  console.log(userInfo)
+
   function getAddress(userInfo: UserData): string {
     let result;
     if (userInfo?.address?.length) {
@@ -24,8 +26,8 @@ const AboutSection = ({ userInfo }: { userInfo: UserData | null }) => {
 
   function getWork(userInfo: UserData): string {
     let result;
-    if (userInfo?.workExprience?.length) {
-      userInfo?.workExprience?.map((item) => {
+    if (userInfo?.workExperience?.length) {
+      userInfo?.workExperience?.map((item) => {
 
         console.log(item);
 
@@ -46,11 +48,11 @@ const AboutSection = ({ userInfo }: { userInfo: UserData | null }) => {
   }
 
   return (
-    <div className="p-4">
+    <div className="p-4 space-y-2">
       {userInfo && (
         <>
           <div className="grid grid-col-12 ">
-            <span className="col-start-1 col-end-3">
+            <span className="col-start-1 col-end-3 ">
               <Image
                 src={aboutIcons.skills}
                 width={20}
@@ -58,18 +60,18 @@ const AboutSection = ({ userInfo }: { userInfo: UserData | null }) => {
                 alt="skills"
                 className="inline mx-2"
               />{" "}
-              <span className="font-semibold text-primary-light dark:text-primary-dark pr-1">
+              <span className="font-semibold  text-primary-light dark:text-primary-dark pr-1">
                 Skills:
               </span>
             </span>
-            <span className=" col-start-3 col-end-12 text-neutral-500 dark:text-neutral-400 font-medium">
+            <span className=" col-start-3  col-end-12 text-neutral-500 dark:text-neutral-400 font-medium ">
               {!!userInfo?.skills?.length
                 ? userInfo?.skills.join(", ")
                 : "Not available"}
             </span>
           </div>
           <div className="grid grid-col-12 ">
-            <span className="col-start-1 col-end-3">
+            <span className="col-start-1 col-end-3 ">
               <Image
                 src={aboutIcons.address}
                 width={20}
@@ -81,12 +83,12 @@ const AboutSection = ({ userInfo }: { userInfo: UserData | null }) => {
                 Address:
               </span>
             </span>
-            <span className=" col-start-3 col-end-12 text-neutral-500 dark:text-neutral-400 font-medium">
+            <span className=" col-start-3  col-end-12 text-neutral-500 dark:text-neutral-400 font-medium ">
               {getAddress(userInfo as UserData)}
             </span>
           </div>
           <div className="grid grid-col-12 ">
-            <span className="col-start-1 col-end-3">
+            <span className="col-start-1 col-end-3 ">
               <Image
                 src={aboutIcons.work}
                 width={20}
@@ -98,12 +100,12 @@ const AboutSection = ({ userInfo }: { userInfo: UserData | null }) => {
                 Work:
               </span>
             </span>
-            <span className=" col-start-3 col-end-12 text-neutral-500 dark:text-neutral-400 font-medium">
+            <span className=" col-start-3  col-end-12 text-neutral-500 dark:text-neutral-400 font-medium ">
               {getWork(userInfo as UserData)}
             </span>
           </div>
           <div className="grid grid-col-12 ">
-            <span className="col-start-1 col-end-3">
+            <span className="col-start-1 col-end-3 ">
               <Image
                 src={aboutIcons.education}
                 width={20}
@@ -115,12 +117,12 @@ const AboutSection = ({ userInfo }: { userInfo: UserData | null }) => {
                 Education:
               </span>
             </span>
-            <span className=" col-start-3 col-end-12 text-neutral-500 dark:text-neutral-400 font-medium">
+            <span className=" col-start-3  col-end-12 text-neutral-500 dark:text-neutral-400 font-medium ">
               {getEducation(userInfo as UserData)}
             </span>
           </div>
           <div className="grid grid-col-12 ">
-            <span className="col-start-1 col-end-3">
+            <span className="col-start-1 col-end-3 ">
               <Image
                 src={aboutIcons.joined}
                 width={20}
@@ -132,12 +134,12 @@ const AboutSection = ({ userInfo }: { userInfo: UserData | null }) => {
                 Joined On:
               </span>
             </span>
-            <span className=" col-start-3 col-end-12 text-neutral-500 dark:text-neutral-400 font-medium">
+            <span className=" col-start-3  col-end-12 text-neutral-500 dark:text-neutral-400 font-medium ">
               {dayjs(userInfo?.createdAt).format("DD-MMM-YYYY")}
             </span>
           </div>
           <div className="grid grid-col-12 ">
-            <span className="col-start-1 col-end-3">
+            <span className="col-start-1 col-end-3 ">
               <Image
                 src={aboutIcons.email}
                 width={20}
@@ -149,7 +151,7 @@ const AboutSection = ({ userInfo }: { userInfo: UserData | null }) => {
                 Email:
               </span>
             </span>
-            <span className=" col-start-3 col-end-12 text-neutral-500 dark:text-neutral-400 font-medium">
+            <span className="text-left col-start-3  col-end-12 text-neutral-500 dark:text-neutral-400 font-medium ">
               {userInfo?.email}
             </span>
           </div>

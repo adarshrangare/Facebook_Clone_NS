@@ -1,16 +1,15 @@
 "use server";
 import { baseURL } from "./utils";
-interface LoginBody  {
+interface LoginBody {
   name?: string;
   email: string;
   password: string;
   appType: string;
-};
+}
 /*
 	All the functions used to make fetch call are here.
 */
 const projectID = "ktu17k7gadkn";
-
 
 // User SignIn API
 
@@ -63,56 +62,58 @@ export async function userSignUp(body: LoginBody) {
 
 // getting Post Array
 
-export async function getAllPosts(jwt:string,page:number){
+export async function getAllPosts(jwt: string, page: number) {
   try {
-    const response = await fetch(`${baseURL}/post?limit=10&page=${page}&sort={"createdAt" : -1}`,{
-      method : "GET",
-      headers: {
-        					"Content-Type": "application/json",
-        					projectID: projectID,
-        					Authorization: `Bearer ${jwt}`,
-        				},
-    })
+    const response = await fetch(
+      `${baseURL}/post?limit=10&page=${page}&sort={"createdAt" : -1}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          projectID: projectID,
+          Authorization: `Bearer ${jwt}`,
+        },
+      }
+    );
 
     const data = await response.json();
-    if(data?.status === 'fail'){
+    if (data?.status === "fail") {
       throw new Error(data?.message);
-    } else{
+    } else {
       return data;
     }
-
-} catch (error) {
+  } catch (error) {
     throw error;
   }
 }
 
-
-
-
-export async function likePost( jwt:string, postID:string,method:"POST"|"DELETE") {
-	try {
-		const data = await fetch(
-			`https://academics.newtonschool.co/api/v1/facebook/like/${postID}`,
-			{
-				method: method,
-				headers: {
-					"Content-Type": "application/json",
-					projectID: projectID,
-					Authorization: `Bearer ${jwt}`,
-				},
-			}
-		);
-		const res = await data.json();
-    console.log({res});
-		if (res.status === "success") return { message: "success" };
-		else throw Error("failed");
-	} catch (error) {
+export async function likePost(
+  jwt: string,
+  postID: string,
+  method: "POST" | "DELETE"
+) {
+  try {
+    const data = await fetch(
+      `https://academics.newtonschool.co/api/v1/facebook/like/${postID}`,
+      {
+        method: method,
+        headers: {
+          "Content-Type": "application/json",
+          projectID: projectID,
+          Authorization: `Bearer ${jwt}`,
+        },
+      }
+    );
+    const res = await data.json();
+    console.log({ res });
+    if (res.status === "success") return { message: "success" };
+    else throw Error("failed");
+  } catch (error) {
     return { message: "error" };
-	}
+  }
 }
 
-
-export async function createAPost(jwt:string, formData:FormData) {
+export async function createAPost(jwt: string, formData: FormData) {
   try {
     const data = await fetch(
       "https://academics.newtonschool.co/api/v1/facebook/post/",
@@ -135,93 +136,118 @@ export async function createAPost(jwt:string, formData:FormData) {
   }
 }
 
-export async function deletePost(jwt:string, postID:string) {
-	try {
-		const data = await fetch(
-			`https://academics.newtonschool.co/api/v1/facebook/post/${postID}`,
-			{
-				method: "DELETE",
-				headers: {
-					projectID: projectID,
-					Authorization: `Bearer ${jwt}`,
-				},
-			}
-		);
-		const res = await data.json();
-		return res;
-	} catch (error) {
-		return { message: "success" };
-	}
+export async function deletePost(jwt: string, postID: string) {
+  try {
+    const data = await fetch(
+      `https://academics.newtonschool.co/api/v1/facebook/post/${postID}`,
+      {
+        method: "DELETE",
+        headers: {
+          projectID: projectID,
+          Authorization: `Bearer ${jwt}`,
+        },
+      }
+    );
+    const res = await data.json();
+    return res;
+  } catch (error) {
+    return { message: "success" };
+  }
 }
 
-export async function editAPost(jwt:string, formData:FormData, id:string) {
-	try {
-		const data = await fetch(
-			`https://academics.newtonschool.co/api/v1/facebook/post/${id}`,
-			{
-				method: "PATCH",
-				body: formData,
-				headers: {
-					projectID: projectID,
-					Authorization: `Bearer ${jwt}`,
-				},
-			}
-		);
-		const res = await data.json();
-		if (res.status === "success") {
-			return { message: "success", id: res.data._id };
-		}
-		return { message: "fail" };
-	} catch (error) {
-		return { message: "error" };
-	}
+export async function editAPost(jwt: string, formData: FormData, id: string) {
+  try {
+    const data = await fetch(
+      `https://academics.newtonschool.co/api/v1/facebook/post/${id}`,
+      {
+        method: "PATCH",
+        body: formData,
+        headers: {
+          projectID: projectID,
+          Authorization: `Bearer ${jwt}`,
+        },
+      }
+    );
+    const res = await data.json();
+    if (res.status === "success") {
+      return { message: "success", id: res.data._id };
+    }
+    return { message: "fail" };
+  } catch (error) {
+    return { message: "error" };
+  }
 }
 
+export async function postAComment(
+  jwt: string,
+  postid: string,
+  comment: string
+) {
+  try {
+    const data = await fetch(
+      `https://academics.newtonschool.co/api/v1/facebook/comment/${postid}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          projectID: projectID,
+          Authorization: `Bearer ${jwt}`,
+        },
+        body: JSON.stringify({ content: comment }),
+      }
+    );
+    const res = await data.json();
+    if (res.status === "success") {
+      return { message: "success" };
+    }
 
-export async function postAComment(jwt:string, postid:string, comment:string) {
-	try {
-		const data = await fetch(
-			`https://academics.newtonschool.co/api/v1/facebook/comment/${postid}`,
-			{
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-					projectID: projectID,
-					Authorization: `Bearer ${jwt}`,
-				},
-				body: JSON.stringify({ content: comment }),
-			}
-		);
-		const res = await data.json();
-		if (res.status === "success") {
-			return { message: "success" };
-		}
-
-		return { message: res?.message };
-	} catch (error) {
-		return { message: "error" };
-	}
+    return { message: res?.message };
+  } catch (error) {
+    return { message: "error" };
+  }
 }
 
-
-export async function deleteComment(jwt:string, commentId:string) {
-	try {
-		const data = await fetch(
-			`https://academics.newtonschool.co/api/v1/quora/comment/${commentId}`,
-			{
-				method: "DELETE",
-				headers: {
-					projectID: projectID,
-					Authorization: `Bearer ${jwt}`,
-				},
-			}
-		);
-		return { message: "success" };
-	} catch (error) {
-		return { message: "error" };
-	}
+export async function deleteComment(jwt: string, commentId: string) {
+  try {
+    const data = await fetch(
+      `https://academics.newtonschool.co/api/v1/quora/comment/${commentId}`,
+      {
+        method: "DELETE",
+        headers: {
+          projectID: projectID,
+          Authorization: `Bearer ${jwt}`,
+        },
+      }
+    );
+    return { message: "success" };
+  } catch (error) {
+    return { message: "error" };
+  }
 }
 
+export async function followUser(
+  jwt: string,
+  userID: string,
+  method: "POST" | "DELETE"
+) {
+  try {
+    const data = await fetch(
+      `https://academics.newtonschool.co/api/v1/facebook/follow/${userID}`,
+      {
+        method: method,
+        headers: {
+          "Content-Type": "application/json",
+          projectID: projectID,
+          Authorization: `Bearer ${jwt}`,
+        },
+      }
+    );
+    const res = await data.json();
+    return res;
+  } catch (error) {
+    return { message: "error" };
+  }
+}
 
 // export async function getPostDetail(jwt, postID) {
 // 	try {
@@ -244,7 +270,6 @@ export async function deleteComment(jwt:string, commentId:string) {
 // 		return { message: "error" };
 // 	}
 // }
-
 
 // export async function getUser(jwt, uid) {
 // 	try {

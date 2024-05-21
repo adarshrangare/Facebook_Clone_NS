@@ -37,7 +37,7 @@ export interface UserData {
   skills?: string[];
   address?: string[];
   paymentDetails?: any[]; // Update this with the correct type if needed
-  workExprience?: any[]; // Update this with the correct type if needed
+  workExperience?: any[]; // Update this with the correct type if needed
   education?: any[]; // Update this with the correct type if needed
   createdAt?: string;
   __v?: number;

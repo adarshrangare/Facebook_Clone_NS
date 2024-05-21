@@ -1,23 +1,28 @@
+"use client"
 import { Post, UserData } from "@/lib/definations";
 import { useSession } from "next-auth/react";
+import Link from "next/link";
+import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import HomePostCard from "../HomeComponents/HomePostCard";
 import PostCardLoader from "../Skeletons/PostCardLoader";
 
 const UsersPosts = ({ userInfo }: { userInfo: UserData | null }) => {
-  const userId = userInfo?._id  ;
-  console.log(userId);
+  // const userId = userInfo?._id  ;
+  // console.log(userId);
   const { data: session } = useSession();
-
+  const params = useParams();
+  const userId = params.userId;
   const [posts, setPosts] = useState<Post[] | []>([]);
   const [loading,setLoading] = useState(true);
+
   useEffect(() => {
     setLoading(true);
     async function getUsersPost() {
       try {
         const res = await fetch(
-          `https://academics.newtonschool.co/api/v1/facebook/user/${userId}/posts?limit=1000&page=1`,
+          `https://academics.newtonschool.co/api/v1/facebook/user/${userId}/posts`,
           {
             headers: {
               Authorization: `Bearer ${session?.token}`,
@@ -37,18 +42,18 @@ const UsersPosts = ({ userInfo }: { userInfo: UserData | null }) => {
         setLoading(false);
       } catch (error: any) {
         toast.error(error?.message);
-        setLoading(false)
+        setLoading(true)
       }
     }
     
     getUsersPost();
-  }, []);
+  }, [session?.token]);
 
   return <div className="dark:bg-body-dark bg-body-light">
 
 <div className=" w-full my-4 space-y-4 pt-4">
       {!loading
-        ? posts?.map((post, index) => <HomePostCard key={index} post={post} onlyPost={true} />)
+        ? posts?.map((post, index) => <Link key={index} href={`/post/${post?._id}`}><HomePostCard  post={post} onlyPost={true} /></Link>)
         : Array.from({ length: 4 }).map((_, index) => (
             <PostCardLoader key={index} />
           ))}

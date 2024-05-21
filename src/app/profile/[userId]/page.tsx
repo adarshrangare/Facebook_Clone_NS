@@ -19,6 +19,9 @@ function Profile() {
 
   const [loading, setLoading] = useState(true);
 
+
+  useEffect(() => {
+    
   async function getUserInfo() {
     try {
       const res = await fetch(
@@ -46,10 +49,8 @@ function Profile() {
       setLoading(true);
     }
   }
-
-  useEffect(() => {
     getUserInfo();
-  }, []);
+  }, [session?.token,userId]);
 
   return (
     <>
