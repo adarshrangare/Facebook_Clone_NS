@@ -15,7 +15,7 @@ const CreateComment = ({ postId, user }: { postId: string; user: User }) => {
     const res = await postAComment(user.jwt, postId, commentInput);
     if (res.message === "success") {
       toast.success("Comment is posted successfully");
-      router.push(`/post/${postId}`);
+      router.refresh();
     } else {
       toast.error("Unable to add comment");
     }

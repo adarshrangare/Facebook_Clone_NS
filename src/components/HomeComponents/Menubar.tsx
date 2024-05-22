@@ -51,7 +51,7 @@ const Menubar = ()=> {
               {item.title}
             </span>
           </Link>
-        </li>) : (<li key={index} className="pt-2 px-2 rounded-md cursor-pointer hover:bg-zinc-200 dark:hover:bg-hover-dark">
+        </li>) : (<li key={index} className="pt-2 px-2  rounded-md cursor-not-allowed hover:bg-zinc-200 dark:hover:bg-hover-dark">
           <div className="flex items-center gap-3  pb-2 dark:text-primary-dark text-primary-light">
             <i
               className=""

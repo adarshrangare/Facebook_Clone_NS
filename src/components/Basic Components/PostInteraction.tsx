@@ -33,14 +33,14 @@ const PostInteraction = () => {
         if (data.status === "success") {
           setPost(data?.data);
         } else {
-          toast.error("Unable to get Data from Server");
+          // toast.error("Unable to get Data from Server");
         }
       } catch (error: any) {
         // toast.error(error?.message);
       }
     }
     getPost();
-  }, []);
+  }, [session?.token,id]);
 
   return (
     <div className="flex-1">

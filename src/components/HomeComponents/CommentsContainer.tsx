@@ -6,7 +6,7 @@ import { HiDotsHorizontal } from "react-icons/hi";
 import MenuPopUp from "../Basic Components/MenuPopUp";
 import { deleteComment } from "@/lib/actions";
 import toast from "react-hot-toast";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 const CommentsContainer = ({
   user,
@@ -20,18 +20,18 @@ const CommentsContainer = ({
   // const [authorDetails, setAuthorDetails] = useState<UserData | null>(comments?.author_details || null)
   const [openConfirmModal, setOpenConfirmModal] = useState(false);
    const router = useRouter();
-  const handleDelete = async (id:string)=>{
-
-    const res = await deleteComment(user.jwt,id)
-
-    console.log(res);
+   const pathName = usePathname();
+   const handleDelete = async (id:string)=>{
+     const res = await deleteComment(user.jwt,id)
+    //  console.log(res);
+    // console.log({pathName});
     if(res.message === "success"){
       toast.success("comment is deleted");
-      router.refresh();
     }else{
       toast.error(`something went wrong `);
     }
-
+    
+    
   }
 
   return (

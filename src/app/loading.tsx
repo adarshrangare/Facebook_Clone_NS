@@ -7,7 +7,7 @@ const loading = () => {
     <>
       <Header />
       <main className="relative w-11/12  mt-2 container mx-auto md:grid grid-cols-4">
-        <section className="col-start-1 relative  px-2 ">
+        <section className="col-start-1 relative  px-2 max-sm:hidden">
           <Menubar/>           
         </section>
         <section className="col-start-2  col-end-4  container px-2 ">

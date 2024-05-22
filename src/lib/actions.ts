@@ -1,4 +1,5 @@
 "use server";
+import { revalidatePath } from "next/cache";
 import { baseURL } from "./utils";
 interface LoginBody {
   name?: string;
@@ -128,6 +129,7 @@ export async function createAPost(jwt: string, formData: FormData) {
     );
     const res = await data.json();
     if (res.status === "success") {
+      revalidatePath("/")
       return { message: "success", id: res.data._id };
     }
     return { message: "fail" };
@@ -149,6 +151,7 @@ export async function deletePost(jwt: string, postID: string) {
       }
     );
     const res = await data.json();
+    revalidatePath("/")
     return res;
   } catch (error) {
     return { message: "success" };
@@ -170,6 +173,7 @@ export async function editAPost(jwt: string, formData: FormData, id: string) {
     );
     const res = await data.json();
     if (res.status === "success") {
+      revalidatePath("/")
       return { message: "success", id: res.data._id };
     }
     return { message: "fail" };
@@ -198,6 +202,7 @@ export async function postAComment(
     );
     const res = await data.json();
     if (res.status === "success") {
+      revalidatePath("/")
       return { message: "success" };
     }
 
@@ -209,7 +214,7 @@ export async function postAComment(
 
 export async function deleteComment(jwt: string, commentId: string) {
   try {
-    const data = await fetch(
+    const res = await fetch(
       `https://academics.newtonschool.co/api/v1/quora/comment/${commentId}`,
       {
         method: "DELETE",
@@ -219,7 +224,14 @@ export async function deleteComment(jwt: string, commentId: string) {
         },
       }
     );
-    return { message: "success" };
+
+    if (res.status === 204) {
+      revalidatePath("/")
+      revalidatePath("/post/[id]")
+      return { message: "success" };
+    } else {
+      return { message: "error" };
+    }
   } catch (error) {
     return { message: "error" };
   }
@@ -249,28 +261,26 @@ export async function followUser(
   }
 }
 
-export async function createAPage(jwt:string, formData:FormData) {
-	try {
-		const data = await fetch(
-			"https://academics.newtonschool.co/api/v1/facebook/channel/",
-			{
-				method: "POST",
-				body: formData,
-				headers: {
-					projectID: projectID,
-					Authorization: `Bearer ${jwt}`,
-				},
-			}
-		);
-		const res = await data.json();
-		return res;
-      // if(res)
-
-	} catch (error) {
-		return error;
-	}
+export async function createAPage(jwt: string, formData: FormData) {
+  try {
+    const data = await fetch(
+      "https://academics.newtonschool.co/api/v1/facebook/channel/",
+      {
+        method: "POST",
+        body: formData,
+        headers: {
+          projectID: projectID,
+          Authorization: `Bearer ${jwt}`,
+        },
+      }
+    );
+    const res = await data.json();
+    return res;
+    // if(res)
+  } catch (error) {
+    return error;
+  }
 }
-
 
 // export async function getChannelData(id) {
 // 	try {
