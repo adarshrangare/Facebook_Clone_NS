@@ -19,6 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <link rel="icon" href="/favicon.ico" sizes="any" />
       <SessionContext>
         <body
           className={`${inter.className} bg-body-light dark:bg-body-dark text-primary-light dark:text-primary-dark`}

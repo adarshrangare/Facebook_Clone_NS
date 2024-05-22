@@ -8,6 +8,10 @@ import { Carousel } from "antd";
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+
+const fallbackImage = "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg"
+
+
 const Post = async ({ params }: { params: { id: string } | undefined }) => {
   let images;
   const res = await fetch(
@@ -44,7 +48,7 @@ const Post = async ({ params }: { params: { id: string } | undefined }) => {
               //   {images?.map((image: string) => (
                   <Image
                     key={images[0]}
-                    src={images[0]}
+                    src={images[0] || fallbackImage}
                     alt={images[0]}
                     width={1000}
                     height={1000}
