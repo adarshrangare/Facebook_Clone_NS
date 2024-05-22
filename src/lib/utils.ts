@@ -40,14 +40,14 @@ export const logos = {
 export const adData = [
   
   {
-    img: "https://scontent.fbom19-1.fna.fbcdn.net/v/t45.1600-4/330101336_23853007105720640_1871418940428599181_n.png?stp=cp0_dst-jpg_p296x100_q90_spS444&_nc_cat=1&ccb=1-7&_nc_sid=5f2048&_nc_ohc=SkPZdodPGQoQ7kNvgH5JQWb&_nc_ht=scontent.fbom19-1.fna&oh=00_AfCYyKu32jxNZq9IBWuOtru1OTiI6Ra0p71iZ8cOCF_8Rg&oe=66394A9A",
-    text: "How to produce pixel perfect images",
-    link: "topazlabs.com",
+    img: "https://mir-s3-cdn-cf.behance.net/projects/404/3c7a9d197064595.Y3JvcCw2NTYsNTEzLDM4NCww.jpg",
+    text: "See Goibibo Clone Project",
+    link: "goibibo-clone-new.vercel.app/",
   },
   {
-    img: "https://scontent.fbom19-3.fna.fbcdn.net/v/t45.1600-4/434300862_120206541187310192_164022967177912988_n.jpg?stp=cp0_dst-jpg_p960x960_q75_spS444&_nc_cat=101&ccb=1-7&_nc_sid=5f2048&_nc_ohc=PEsvziQm3msQ7kNvgGue9m4&_nc_ht=scontent.fbom19-3.fna&oh=00_AfDILxfcEl15isMLygh46UZvbO21GI6Pq84Ztb4T_AdkBg&oe=66394C1D",
-    text: "Worlds 1st and Only smartGrid Chair",
-    link: "thesleepcompany.in",
+    img: "https://avatars.githubusercontent.com/u/14923323?v=4",
+    text: "Visit and Follow My Github Profile ",
+    link: "github.com/adarshrangare",
   },
 ];
 

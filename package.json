@@ -1,6 +1,6 @@
 {
   "name": "ns_facebook",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -21,7 +21,6 @@
     "react-hot-toast": "^2.4.1",
     "react-icons": "^5.2.0",
     "sharp": "^0.33.4",
-    "uninstall": "^0.0.0",
     "yup": "^1.4.0"
   },
   "devDependencies": {

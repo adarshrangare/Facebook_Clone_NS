@@ -51,9 +51,9 @@ const UsersPosts = ({ userInfo }: { userInfo: UserData | null }) => {
 
   return <div className="dark:bg-body-dark bg-body-light">
 
-<div className=" w-full my-4 space-y-4 pt-4">
+<div className=" w-full my-4 space-y-8 pt-4">
       {!loading
-        ? posts?.map((post, index) => <Link key={index} href={`/post/${post?._id}`}><HomePostCard  post={post} onlyPost={true} /></Link>)
+        ? posts?.map((post, index) => <Link className="my-4 py-4" key={index} href={`/post/${post?._id}`}><HomePostCard  post={post} onlyPost={true} /></Link>)
         : Array.from({ length: 4 }).map((_, index) => (
             <PostCardLoader key={index} />
           ))}

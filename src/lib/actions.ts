@@ -249,96 +249,33 @@ export async function followUser(
   }
 }
 
-// export async function getPostDetail(jwt, postID) {
-// 	try {
-// 		const data = await fetch(
-// 			`https://academics.newtonschool.co/api/v1/quora/post/${postID}`,
-// 			{
-// 				method: "GET",
-// 				headers: {
-// 					"Content-Type": "application/json",
-// 					projectID: projectID,
-// 					Authorization: `Bearer ${jwt}`,
-// 				},
-// 			}
-// 		);
-// 		const res = await data.json();
-// 		if (res.status === "success")
-// 			return { message: "success", data: res.data };
-// 		return { message: "fail" };
-// 	} catch (error) {
-// 		return { message: "error" };
-// 	}
-// }
+export async function createAPage(jwt:string, formData:FormData) {
+	try {
+		const data = await fetch(
+			"https://academics.newtonschool.co/api/v1/facebook/channel/",
+			{
+				method: "POST",
+				body: formData,
+				headers: {
+					projectID: projectID,
+					Authorization: `Bearer ${jwt}`,
+				},
+			}
+		);
+		const res = await data.json();
+		return res;
+      // if(res)
 
-// export async function getUser(jwt, uid) {
-// 	try {
-// 		const data = await fetch(
-// 			`https://academics.newtonschool.co/api/v1/quora/user/${uid}`,
-// 			{
-// 				method: "GET",
-// 				headers: {
-// 					projectID: projectID,
-// 					Authorization: `Bearer ${jwt}`,
-// 				},
-// 			}
-// 		);
-// 		const res = await data.json();
-// 		return res;
-// 	} catch (error) {
-// 		return { message: "error" };
-// 	}
-// }
-// export async function toggleFollow(follow, jwt, id) {
-// 	try {
-// 		const data = await fetch(
-// 			`https://academics.newtonschool.co/api/v1/quora/follow/${id}`,
-// 			{
-// 				method: follow ? "POST" : "DELETE",
-// 				headers: {
-// 					projectID: projectID,
-// 					Authorization: `Bearer ${jwt}`,
-// 				},
-// 			}
-// 		);
-// 		const res = await data.json();
-// 		if (res.status === "success") {
-// 			return { message: "success" };
-// 		} else {
-// 			return { message: "fail" };
-// 		}
-// 	} catch (error) {
-// 		return { message: "error" };
-// 	}
-// }
-// export async function getUsersPosts(jwt, uid) {
-// 	try {
-// 		const data = await fetch(
-// 			"https://academics.newtonschool.co/api/v1/quora/post?limit=10000",
-// 			{
-// 				method: "GET",
-// 				headers: {
-// 					projectID: projectID,
-// 					Authorization: `Bearer ${jwt}`,
-// 				},
-// 			}
-// 		);
-// 		const res = await data.json();
-// 		if (res.status === "success") {
-// 			const posts = res.data.filter(({ author }) => {
-// 				return author._id === uid;
-// 			});
-// 			return { posts, message: "success" };
-// 		}
-// 		return { message: "error" };
-// 	} catch (error) {
-// 		return { message: "error" };
-// 	}
-// }
+	} catch (error) {
+		return error;
+	}
+}
+
+
 // export async function getChannelData(id) {
 // 	try {
 // 		const data = await fetch(
-// 			`https://academics.newtonschool.co/api/v1/quora/channel/${id}`,
+// 			`https://academics.newtonschool.co/api/v1/facebook/channel/${id}`,
 // 			{
 // 				method: "GET",
 // 				headers: {
@@ -377,25 +314,7 @@ export async function followUser(
 // 		return { message: "error" };
 // 	}
 // }
-// export async function createASpace(jwt, formData) {
-// 	try {
-// 		const data = await fetch(
-// 			"https://academics.newtonschool.co/api/v1/quora/channel/",
-// 			{
-// 				method: "POST",
-// 				body: formData,
-// 				headers: {
-// 					projectID: projectID,
-// 					Authorization: `Bearer ${jwt}`,
-// 				},
-// 			}
-// 		);
-// 		const res = await data.json();
-// 		return res;
-// 	} catch (error) {
-// 		return error;
-// 	}
-// }
+
 // export async function editASpace(jwt, channelID, formData) {
 // 	try {
 // 		const data = await fetch(

@@ -89,3 +89,14 @@ export interface Comment {
   __v?: number;
   author_details?: UserData | null;
 }
+
+export interface Page {
+  _id: string;
+  name: string;
+  owner: UserData;
+  isEdited: boolean;
+  createdAt: string;
+  image:string;
+  description:string;
+  __v: number;
+}
