@@ -20,7 +20,10 @@ const Menubar = ()=> {
     <div className="sticky top-16 ">
       <ul className="w-full md:w-10/12 lg:w-9/12">
         <li className="py-2 ">
-          <ProfileCardNav />
+          
+          
+            <ProfileCardNav />
+          
         </li>
         <li className="pt-2 px-2 rounded-md cursor-pointer hover:bg-zinc-200 dark:hover:bg-hover-dark">
           <div className="flex items-center gap-3  pb-2 dark:text-primary-dark text-primary-light">

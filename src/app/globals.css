@@ -10,3 +10,6 @@ body {
 *{
   @apply transition-all;
 }
+::-webkit-scrollbar {
+  display: none;
+}

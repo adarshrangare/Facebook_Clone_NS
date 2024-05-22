@@ -70,7 +70,7 @@ const SearchArea = () => {
           </h1>
           {!!results ? (
             postList?.map((post: Post, index: number) => (
-              <Link key={post?._id} href={`post/${post?._id}`} className="w-full bg-slate-900/5 dark:bg-neutral-800 mb-1 hover:bg-black/10 dark:hover:bg-neutral-900 flex max-h-20 h-20 rounded-lg">
+              <Link key={post?._id} href={`post/${post?._id}`} className="w-full shadow bg-slate-100 dark:bg-neutral-800 mb-2  hover:bg-black/10 dark:hover:bg-neutral-900 flex max-h-20 h-20 rounded-lg">
                 <Image
                   src={post?.images[0] || fallbackImage}
                   alt="image"

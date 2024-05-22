@@ -16,7 +16,7 @@ const Login = () => {
               height={108}
               className="h-[108px] w-80 sm:self-start max-sm:h-[96px]"
             />
-            <h2 className="md:px-6 px-2 max-md:text-center max-sm:text-lg dark:text-primary-light text-primary-dark ">
+            <h2 className="md:px-6 px-2 max-md:text-center max-sm:text-lg text-primary-light ">
               Facebook helps you connect and share with the people in your life.
             </h2>
           </section>
