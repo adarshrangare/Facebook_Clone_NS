@@ -9,12 +9,13 @@ const loading = () => {
     <>
       <div
         className={
-          "mx-auto w-full max-w-screen-2xl relative bg-gray-100 " + shimmer
+          "mx-auto w-full h-80 max-w-screen-2xl relative bg-gray-100 " + shimmer
         }
       >
         <div
           className={
-            "w-full max-h-80 object-cover object-center text-center" + shimmer
+            "w-full max-h-80 h-full object-cover object-center text-center" +
+            shimmer
           }
         >
           Cover Image Loding...
@@ -27,7 +28,7 @@ const loading = () => {
 
       <ProfileLoader />
 
-      <Skeleton active/>
+      <Skeleton active />
     </>
   );
 };

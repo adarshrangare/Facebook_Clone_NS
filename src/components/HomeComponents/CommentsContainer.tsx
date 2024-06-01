@@ -27,6 +27,7 @@ const CommentsContainer = ({
     // console.log({pathName});
     if(res.message === "success"){
       toast.success("comment is deleted");
+      window.location.reload();
     }else{
       toast.error(`something went wrong `);
     }

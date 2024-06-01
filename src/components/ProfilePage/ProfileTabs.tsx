@@ -38,6 +38,30 @@ const ProfileTabs = ({
           ),
           children: <UsersPosts userInfo={userInfo} />,
         },
+        {
+          key: "3",
+          label: (
+            <h1 className="font-semibold px-4  dark:text-primary-dark ">Followers</h1>
+          ),
+          disabled:true,
+          children: <h1 className="w-full text-center font-bold text-2xl p-4">Coming Soon</h1>,
+        },
+        {
+          key: "4",
+          label: (
+            <h1 className="font-semibold px-4  dark:text-primary-dark ">Photos</h1>
+          ),
+          disabled:true,
+          children: <h1 className="w-full text-center font-bold text-2xl p-4">Coming Soon</h1>,
+        },
+        {
+          key: "5",
+          label: (
+            <h1 className="font-semibold px-4  dark:text-primary-dark ">More</h1>
+          ),
+          disabled:true,
+          children: <h1 className="w-full text-center font-bold text-2xl p-4">Coming Soon</h1>,
+        },
       ]}
       onChange={onChange}
     />

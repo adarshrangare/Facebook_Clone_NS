@@ -5,6 +5,7 @@ import { IoSearch } from "react-icons/io5";
 import Link from 'next/link';
 import ProfileNav from '@/components/Header/ProfileNav'
 import SearchArea from '../SearchArea/SearchArea';
+import Notification from './Notification';
 const Header = () => {
   return (
     <div className='sticky z-40 top-0 h-14 bg-primary-light dark:bg-primary-dark w-full shadow-md'>
@@ -18,7 +19,10 @@ const Header = () => {
           </div>
           <SearchArea/>
           {/* <Navbar className='md:w-1/2 bg-gray-50'/> */}
-          <ProfileNav/>
+          <div className=' flex items-center gap-1'>
+            <Notification/>
+            <ProfileNav/>
+          </div>
       </header>
     </div>
   )

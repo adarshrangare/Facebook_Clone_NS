@@ -34,6 +34,8 @@ export interface UserData {
   email?: string;
   password?: string;
   profileImage?: string | null;
+  phone?: string;
+  gender?:string;
   skills?: string[];
   address?: string[];
   paymentDetails?: any[]; // Update this with the correct type if needed

@@ -17,7 +17,7 @@ const ProfileNav = () => {
           setShowMenu(!showMenu);
         }}
       >
-        <UserIcon className="w-10 h-10 rounded-full bg-gray-200 dark:invert p-1.5 text-gray-800 " />
+        <UserIcon className="w-10 h-10 rounded-full bg-gray-200  dark:invert p-1.5 text-gray-800 " />
         <ChevronDownIcon
           className={`w-4  h-4 rounded-full dark:invert bg-gray-200 text-gray-800 absolute p-0.5 border-2 border-white  -right-1 -bottom-1 ${
             showMenu && "rotate-180"

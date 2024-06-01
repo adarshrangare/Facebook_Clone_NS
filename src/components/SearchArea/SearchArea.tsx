@@ -70,13 +70,13 @@ const SearchArea = () => {
           </h1>
           {!!results ? (
             postList?.map((post: Post, index: number) => (
-              <Link key={post?._id} href={`post/${post?._id}`} className="w-full shadow bg-slate-100 dark:bg-neutral-800 mb-2  hover:bg-black/10 dark:hover:bg-neutral-900 flex max-h-20 h-20 rounded-lg">
+              <Link key={post?._id} href={`/post/${post?._id}`} className="w-full shadow bg-slate-100 dark:bg-neutral-800 mb-2  hover:bg-black/10 dark:hover:bg-neutral-900 flex max-h-20 h-20 rounded-full">
                 <Image
                   src={post?.images[0] || fallbackImage}
                   alt="image"
                   width={100}
                   height={100}
-                  className={`object-cover object-center w-20 h-full shrink-0 p-1 rounded-lg ${
+                  className={`object-cover object-center w-20 h-full shrink-0 p-1 rounded-full ${
                     !post?.images[0] && "dark:invert"
                   }`}
                 />

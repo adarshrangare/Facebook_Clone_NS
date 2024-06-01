@@ -50,6 +50,9 @@ const PagePosts = () => {
                     href={`/post/${post?._id}`}
                   >
                     <HomePostCard post={post} onlyPost={true} />
+                    <div className="text-center font-semibold  max-w-md mx-auto px-4 py-4 mt-0.5 mb-4 rounded-md text-primary-light dark:text-primary-dark dark:bg-primary-dark bg-primary-light transition-all hover:scale-[0.99] dark:hover:bg-hover-dark hover:bg-hover-light shadow ">
+                  View Post
+                </div>
                   </Link>
                 );
               }

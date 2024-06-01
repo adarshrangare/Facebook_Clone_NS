@@ -7,7 +7,7 @@ const loading = () => {
   return (
     <>
       <Header />
-      <main className="relative w-11/12  mt-2 container mx-auto md:grid grid-cols-4">
+      <main className="relative w-11/12  mt-2 container mx-auto md:grid grid-cols-4 text-center">
         loading...
         <section className="col-start-1 relative  px-2 max-sm:hidden">
           <Skeleton/>          

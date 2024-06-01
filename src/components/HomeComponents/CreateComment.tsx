@@ -16,6 +16,7 @@ const CreateComment = ({ postId, user }: { postId: string; user: User }) => {
     if (res.message === "success") {
       toast.success("Comment is posted successfully");
       router.refresh();
+      window.location.reload();
     } else {
       toast.error("Unable to add comment");
     }
