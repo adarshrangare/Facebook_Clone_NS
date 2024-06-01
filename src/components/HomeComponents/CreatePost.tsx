@@ -36,7 +36,7 @@ const CreatePost = () => {
             <Image width={24} height={24} src={logos.live} alt="Live Video" />{" "}
             Live Video
           </div>
-          <div onClick={openModal} className="flex items-center gap-2 rounded-md hover:bg-hover-light dark:hover:bg-hover-dark w-fit p-2 py-3 cursor-pointer text-sm font-semibold text-neutral-500 dark:text-neutral-400">
+          <div onClick={openModal} className="flex items-center gap-2 rounded-md hover:bg-hover-light dark:hover:bg-hover-dark w-fit px-1 py-3 cursor-pointer text-sm font-semibold text-neutral-500 dark:text-neutral-400">
             <Image width={24} height={24} src={logos.photos} alt="Photos" />
             Photo/Images
           </div>

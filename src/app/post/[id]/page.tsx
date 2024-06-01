@@ -43,7 +43,7 @@ const Post = async ({ params }: { params: { id: string } | undefined }) => {
           {/* <ImageContainer postId={params?.id}/> */}
 
           <div className="flex  w-full h-full items-center justify-center p-4 relative ">
-            {!!images?.length && (
+            {!!images?.length ? (
               // <div autoplay>
               //   {images?.map((image: string) => (
                   <Image
@@ -56,7 +56,16 @@ const Post = async ({ params }: { params: { id: string } | undefined }) => {
                   />
               //   ))}
               // </div>
-            )}
+            ) : (
+              <Image
+                    key={1}
+                    src={fallbackImage}
+                    alt={"No Image"}
+                    width={1000}
+                    height={1000}
+                    className=" max-w-full max-h-full w-auto h-auto invert rounded-lg"
+                  />
+            ) }
           </div>
         </div>
         <div className="interaction w-full max-md:h-full max-md:rounded-md md:flex items-center max-w-md  bg-primary-light dark:bg-primary-dark h-full max-h-full ">

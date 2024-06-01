@@ -26,12 +26,12 @@ const Menubar = ()=> {
           
         </li>
         <li className="pt-2 px-2 rounded-md cursor-pointer hover:bg-zinc-200 dark:hover:bg-hover-dark">
-          <div className="flex items-center gap-3  pb-2 dark:text-primary-dark text-primary-light">
+          <a href="https://about.meta.com/covid-19-information-center" target="_blank" className="flex items-center gap-3  pb-2 dark:text-primary-dark text-primary-light">
             <GiMedicalPack className=" w-10 h-10 rounded-full   p-1 text-blue-500 " />
             <span className="font-semibold leading-5">
               COVID-19 Information Centre
             </span>
-          </div>
+          </a>
         </li>
 
         {menubarItems.map((item,index) => (

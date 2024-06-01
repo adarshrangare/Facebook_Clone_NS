@@ -7,7 +7,7 @@ const loading = () => {
   return (
     <>
       <Header />
-      <main className="relative w-11/12  mt-2 container mx-auto md:grid grid-cols-4 text-center">
+      {/* <main className="relative w-11/12  mt-2 container mx-auto md:grid grid-cols-4 text-center">
         loading...
         <section className="col-start-1 relative  px-2 max-sm:hidden">
           <Skeleton/>          
@@ -23,7 +23,22 @@ const loading = () => {
           <Skeleton/>
           <Skeleton/>
         </section>
-      </main>
+      </main> */}
+
+  
+
+<div className="loader">
+  <div className="square" id="sq1"></div>
+  <div className="square" id="sq2"></div>
+  <div className="square" id="sq3"></div>
+  <div className="square" id="sq4"></div>
+  <div className="square" id="sq5"></div>
+  <div className="square" id="sq6"></div>
+  <div className="square" id="sq7"></div>
+  <div className="square" id="sq8"></div>
+  <div className="square" id="sq9"></div>
+</div>
+
 
     </>
   )

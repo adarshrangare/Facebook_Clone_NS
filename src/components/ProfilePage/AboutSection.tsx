@@ -282,7 +282,7 @@ const AboutSection = ({ userInfo }: { userInfo: UserData | null }) => {
             key: "3",
             children: (
               <ul className=" px-4 text-base font-medium space-y-2   ">
-                <li className="pl-4  text-sm">
+                <li className="pl-4  text-sm text-neutral-700 dark:text-primary-dark ">
                   <FaLocationDot className="inline mx-1" size={20} />{" "}
                   {getAddress(userInfo as UserData)}
                 </li>
@@ -298,7 +298,7 @@ const AboutSection = ({ userInfo }: { userInfo: UserData | null }) => {
             key: "4",
             children: (
               <ul className=" px-4 text-base font-medium space-y-2   ">
-                <li className="pl-4  text-sm">
+                <li className="pl-4  text-sm text-neutral-700 dark:text-primary-dark ">
                   <Image
                     src={aboutIcons.skills}
                     width={20}

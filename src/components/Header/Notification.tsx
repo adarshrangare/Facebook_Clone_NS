@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { GoBellFill } from "react-icons/go";
 const Notification = () => {
-  const [showNotifications, setNotifications] = useState(true);
+  const [showNotifications, setNotifications] = useState(false);
 
   return (
     <div className="relative " 
