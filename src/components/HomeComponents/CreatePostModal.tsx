@@ -45,7 +45,8 @@ const CreatePostModal = ({
       setTimeout(() => {
         // router.push("/");
         // router.refresh();
-        router.replace("")
+        router.replace("");
+        window.location.reload();
       }, 100);
       handleClose();
     } else {
@@ -65,7 +66,7 @@ const CreatePostModal = ({
 
   return (
     <Modal
-      className="  dark:invert "
+      className="dark:invert "
       zIndex={2}
       open={openCreatePostModal}
       centered={true}
