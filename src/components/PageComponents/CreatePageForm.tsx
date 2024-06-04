@@ -98,7 +98,7 @@ const CreatePageForm: React.FC = () => {
                 as={InputBox}
                 name="name"
                 placeholder="Page name (required)"
-                className="dark:invert dark:text-primary-light text-primary-dark"
+                className="dark:invert dark:text-primary-light "
               />
               <ErrorMessage
                 name="name"
@@ -116,7 +116,7 @@ const CreatePageForm: React.FC = () => {
                 as={InputBox}
                 name="category"
                 placeholder="Category (required)"
-                className="dark:invert dark:text-primary-light text-primary-dark"
+                className="dark:invert dark:text-primary-light "
               />
               <ErrorMessage
                 name="category"
@@ -133,7 +133,7 @@ const CreatePageForm: React.FC = () => {
                 as="textarea"
                 name="description"
                 placeholder="Description (required)"
-                className="p-3 bg-compo-light outline-none w-full rounded-lg border-2 focus:border-blue-500 box-border dark:invert dark:text-primary-light text-primary-dark min-h-28 resize-none"
+                className="p-3 bg-compo-light outline-none w-full rounded-lg border-2 focus:border-blue-500 box-border dark:invert dark:text-primary-light  min-h-28 resize-none"
               />
               <ErrorMessage
                 name="description"
