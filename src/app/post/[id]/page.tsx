@@ -8,6 +8,8 @@ import { Carousel } from "antd";
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { IoClose } from "react-icons/io5";
+import CrossButton from "../crossButton";
 
 const fallbackImage = "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg"
 
@@ -37,6 +39,7 @@ const Post = async ({ params }: { params: { id: string } | undefined }) => {
       <Link href={"/"}>
         <FacebookIcon className="m-4 absolute top-4 left-4 z-10" />
       </Link>
+      <CrossButton/>
       {/* </div> */}
       <div className="w-11/12 h-full mx-auto flex max-md:flex-col ">
         <div className="img md:basis-3/4  h-full ">
@@ -68,7 +71,7 @@ const Post = async ({ params }: { params: { id: string } | undefined }) => {
             ) }
           </div>
         </div>
-        <div className="interaction w-full max-md:h-full max-md:rounded-md md:flex items-center max-w-md  bg-primary-light dark:bg-primary-dark h-full max-h-full ">
+        <div className="interaction w-full max-md:h-full max-md:rounded-md md:flex items-center max-w-md mx-auto bg-primary-light dark:bg-primary-dark h-full max-h-full ">
           <PostInteraction />
         </div>
       </div>

@@ -24,7 +24,8 @@ export default function Error({
           // Attempt to recover by trying to re-render the invoices route
           () => {
             // reset()
-            router.replace("/")
+            router.replace("/");
+            window.location.reload();
         }
         }
       >

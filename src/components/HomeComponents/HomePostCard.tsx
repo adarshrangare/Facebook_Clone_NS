@@ -23,17 +23,17 @@ import Comments from "./Comments";
 // import disLikePost from "../api/dislikePost";
 
 const HomePostCard = ({
-  onlyPost=false,
+  onlyPost = false,
   post,
   menuOption = false,
   removeImages = false,
-  comments
+  comments,
 }: {
-  onlyPost?:true|false
+  onlyPost?: true | false;
   post: Post;
   menuOption?: true | false;
-  removeImages?:boolean;
-  comments?:boolean
+  removeImages?: boolean;
+  comments?: boolean;
 }) => {
   const getTimeDiff = (postDate: string) => {
     const currentDay = dayjs();
@@ -70,7 +70,11 @@ const HomePostCard = ({
 
   const handleLike = async () => {
     // console.log(token)
-    const response = await likePost(session?.token as string, post?._id, "POST");
+    const response = await likePost(
+      session?.token as string,
+      post?._id,
+      "POST"
+    );
     if (response.message === "success") {
       setLiked(true);
       setLikeCount((prev) => prev + 1);
@@ -117,61 +121,63 @@ const HomePostCard = ({
 
   return (
     <>
-      <div className=" max-w-md mx-auto py-2  bg-primary-light dark:bg-primary-dark shadow rounded-md ">
-        {!onlyPost && <div className="author flex justify-between   px-2">
-          <Link
-            className="author flex items-center gap-4 mb-2 px-2"
-            href={`/profile/${post?.author?._id}`}
-          >
-            {post?.author?.profileImage ? (
-              <Image
-                className="w-10 h-10 rounded-full"
-                src={post?.author?.profileImage}
-                width={24}
-                height={24}
-                alt={post?.author?.name}
-              />
-            ) : (
-              <UserIcon className="w-10 h-10 rounded-full bg-gray-200 dark:invert p-1.5 text-gray-800 " />
-            )}
-            <div>
-              <div className="font-semibold leading-5 text-primary-light dark:text-primary-dark ">
-                {post?.author?.name}
-              </div>
-              <div className="text-xs text-neutral-500">
-                {getTimeDiff(post?.createdAt)}
-              </div>
-            </div>
-          </Link>
-          {menuOptions && (
-            <MenuPopUp
-              label={
-                <HiDotsHorizontal
-                  size={24}
-                  className="text-neutral-600 mr-2 hover:text-neutral-700 cursor-pointer "
+      <div className=" max-w-xl max-lg:max-w-lg max-md:max-w-md mx-auto py-2  bg-primary-light dark:bg-primary-dark shadow rounded-md ">
+        {!onlyPost && (
+          <div className="author flex justify-between   px-2">
+            <Link
+              className="author flex items-center gap-4 mb-2 px-2"
+              href={`/profile/${post?.author?._id}`}
+            >
+              {post?.author?.profileImage ? (
+                <Image
+                  className="w-10 h-10 rounded-full"
+                  src={post?.author?.profileImage}
+                  width={24}
+                  height={24}
+                  alt={post?.author?.name}
                 />
-              }
-              items={[
-                <h1
-                  onClick={() => {
-                    setOpenConfirmModal(true);
-                  }}
-                  key={1}
-                >
-                  Delete
-                </h1>,
-                <h1
-                  onClick={() => {
-                    setOpenEditModal(true);
-                  }}
-                  key={2}
-                >
-                  Edit
-                </h1>,
-              ]}
-            />
-          )}
-        </div>}
+              ) : (
+                <UserIcon className="w-10 h-10 rounded-full bg-gray-200 dark:invert p-1.5 text-gray-800 " />
+              )}
+              <div>
+                <div className="font-semibold leading-5 text-primary-light dark:text-primary-dark ">
+                  {post?.author?.name}
+                </div>
+                <div className="text-xs text-neutral-500">
+                  {getTimeDiff(post?.createdAt)}
+                </div>
+              </div>
+            </Link>
+            {menuOptions && (
+              <MenuPopUp
+                label={
+                  <HiDotsHorizontal
+                    size={24}
+                    className="text-neutral-600 mr-2 hover:text-neutral-700 cursor-pointer "
+                  />
+                }
+                items={[
+                  <h1
+                    onClick={() => {
+                      setOpenConfirmModal(true);
+                    }}
+                    key={1}
+                  >
+                    Delete
+                  </h1>,
+                  <h1
+                    onClick={() => {
+                      setOpenEditModal(true);
+                    }}
+                    key={2}
+                  >
+                    Edit
+                  </h1>,
+                ]}
+              />
+            )}
+          </div>
+        )}
         <EditPostModal
           id={post?._id}
           openEditModal={openEditModal}
@@ -211,7 +217,7 @@ const HomePostCard = ({
           <p>{post?.content}</p>
         </div>
         {/* // image Area */}
-        {!removeImages &&  post?.images?.length !== 0 && (
+        {!removeImages && post?.images?.length !== 0 && (
           <div className="image relative">
             <Link href={`/post/${post._id}`}>
               <Carousel className="w-full" ref={carouselRef} dots={false}>
@@ -248,115 +254,135 @@ const HomePostCard = ({
           </div>
         )}
         {/* Like and comment count */}
-        {!onlyPost &&<div className="counts flex justify-between items-center px-4 ">
-          <Link href={`/post/${post?._id}`}>
-            <div className="flex gap-1.5 my-2 font-light opacity-85 text-primary-light dark:text-primary-dark text-sm cursor-pointer">
-              <Image src={logos.like} alt="like" width={18} height={18} />
-              <span>{likeCount}</span>
-            </div>
-          </Link>
-          <div onClick={() => {
-                setComments((prev) => !prev);
-              }}>
-            <div className="flex gap-1.5 my-2 font-light opacity-85 text-primary-light dark:text-primary-dark text-sm cursor-pointer">
-              <span className="hover:underline">{post?.commentCount}</span>
-              <ChatBubbleOvalLeftIcon className="w-5 h-5 opacity-80" />
-            </div>
-          </div>
-        </div>}
-        {/* Like and Comment Section */}
-        {!onlyPost && <div className=" w-full select-none ">
-          <div className="w-11/12 mx-auto border-t flex pt-2 ">
-            {liked ? (
-              <div
-                className={`flex  gap-2 rounded-md hover:bg-hover-light dark:hover:bg-hover-dark w-fit p-2 py-3 cursor-pointer text-sm font-semibold text-neutral-500 dark:text-neutral-400 text-center flex-1 items-center justify-center `}
-                onClick={() => {
-                  handleDislike();
-                }}
-              >
-                <i
-                  className={`   ${liked ? " opacity-100 duration-100" : ""}`}
-                  style={{
-                    backgroundImage:
-                      "url(https://static.xx.fbcdn.net/rsrc.php/v3/y7/r/GAaxJlSQY0r.png)",
-                    backgroundPosition: `${
-                      liked ? "0px -676px" : "0px -739px"
-                    }`,
-                    backgroundSize: "25px 1427px",
-                    width: "20px",
-                    height: "20px",
-                    backgroundRepeat: "no-repeat",
-                    display: "inline-block",
-                  }}
-                ></i>
-                <span className={`${liked ? "text-blue-500" : ""}`}>Like</span>
+        {!onlyPost && (
+          <div className="counts flex justify-between items-center px-4 ">
+            <Link href={`/post/${post?._id}`}>
+              <div className="flex gap-1.5 my-2 font-light opacity-85 text-primary-light dark:text-primary-dark text-sm cursor-pointer">
+                <Image src={logos.like} alt="like" width={18} height={18} />
+                <span>{likeCount}</span>
               </div>
-            ) : (
-              <div
-                className={`flex  gap-2 rounded-md hover:bg-hover-light dark:hover:bg-hover-dark w-fit p-2 py-3 cursor-pointer text-sm font-semibold text-neutral-500 dark:text-neutral-400 text-center flex-1 items-center justify-center `}
-                onClick={() => {
-                  handleLike();
-                }}
-              >
-                <i
-                  className={`opacity-70  dark:invert ${
-                    liked ? " opacity-100 duration-100" : ""
-                  }`}
-                  style={{
-                    backgroundImage:
-                      "url(https://static.xx.fbcdn.net/rsrc.php/v3/y7/r/GAaxJlSQY0r.png)",
-                    backgroundPosition: `${
-                      liked ? "0px -676px" : "0px -739px"
-                    }`,
-                    backgroundSize: "25px 1427px",
-                    width: "20px",
-                    height: "20px",
-                    backgroundRepeat: "no-repeat",
-                    display: "inline-block",
-                  }}
-                ></i>
-                <span className={`${liked ? "text-blue-500" : ""}`}>Like</span>
-              </div>
-            )}
+            </Link>
             <div
               onClick={() => {
                 setComments((prev) => !prev);
               }}
-              className="flex  gap-2 rounded-md hover:bg-hover-light dark:hover:bg-hover-dark w-fit p-2 py-3 cursor-pointer text-sm font-semibold text-neutral-500 dark:text-neutral-400 text-center flex-1 items-center justify-center"
             >
-              <i
-                className="opacity-70  dark:invert"
-                style={{
-                  backgroundImage:
-                    "url(https://static.xx.fbcdn.net/rsrc.php/v3/y7/r/GAaxJlSQY0r.png)",
-                  backgroundPosition: "0px -550px",
-                  backgroundSize: "25px 1427px",
-                  width: "20px",
-                  height: "20px",
-                  backgroundRepeat: "no-repeat",
-                  display: "inline-block",
-                }}
-              ></i>
-              <span>Comment</span>
-            </div>
-            <div className="flex gap-2 rounded-md hover:bg-hover-light dark:hover:bg-hover-dark w-fit p-2 py-3 cursor-pointer text-sm font-semibold text-neutral-500 dark:text-neutral-400 text-center flex-1 items-center justify-center">
-              <i
-                className="opacity-70 dark:invert"
-                style={{
-                  backgroundImage:
-                    "url(https://static.xx.fbcdn.net/rsrc.php/v3/y7/r/GAaxJlSQY0r.png)",
-                  backgroundPosition: "0px -886px",
-                  backgroundSize: "25px 1427px",
-                  width: "20px",
-                  height: "20px",
-                  backgroundRepeat: "no-repeat",
-                  display: "inline-block",
-                }}
-              ></i>
-              <span>Share</span>
+              <div className="flex gap-1.5 my-2 font-light opacity-85 text-primary-light dark:text-primary-dark text-sm cursor-pointer">
+                <span className="hover:underline">{post?.commentCount}</span>
+                <ChatBubbleOvalLeftIcon className="w-5 h-5 opacity-80" />
+              </div>
             </div>
           </div>
-        </div>} 
+        )}
+        {/* Like and Comment Section */}
+        {!onlyPost && (
+          <div className=" w-full select-none ">
+            <div className="w-11/12 mx-auto border-t flex pt-2 ">
+              {liked ? (
+                <div
+                  className={`flex  gap-2 rounded-md hover:bg-hover-light dark:hover:bg-hover-dark w-fit p-2 py-3 cursor-pointer text-sm font-semibold text-neutral-500 dark:text-neutral-400 text-center flex-1 items-center justify-center `}
+                  onClick={() => {
+                    handleDislike();
+                  }}
+                >
+                  <i
+                    className={`   ${liked ? " opacity-100 duration-100" : ""}`}
+                    style={{
+                      backgroundImage:
+                        "url(https://raw.githubusercontent.com/adarshrangare/Facebook_Clone_NS/main/src/assets/icons.png)",
+                      backgroundPosition: `${
+                        liked ? "0px -676px" : "0px -739px"
+                      }`,
+                      backgroundSize: "25px 1427px",
+                      width: "20px",
+                      height: "20px",
+                      backgroundRepeat: "no-repeat",
+                      display: "inline-block",
+                    }}
+                  ></i>
+                  <span className={`${liked ? "text-blue-500" : ""}`}>
+                    Liked
+                  </span>
+                </div>
+              ) : (
+                <div
+                  className={`flex  gap-2 rounded-md hover:bg-hover-light dark:hover:bg-hover-dark w-fit p-2 py-3 cursor-pointer text-sm font-semibold text-neutral-500 dark:text-neutral-400 text-center flex-1 items-center justify-center `}
+                  onClick={() => {
+                    handleLike();
+                  }}
+                >
+                  <i
+                    className={`opacity-70  dark:invert ${
+                      liked ? " opacity-100 duration-100" : ""
+                    }`}
+                    style={{
+                      backgroundImage:
+                        "url(https://raw.githubusercontent.com/adarshrangare/Facebook_Clone_NS/main/src/assets/icons.png)",
+                      backgroundPosition: `${
+                        liked ? "0px -676px" : "0px -739px"
+                      }`,
+                      backgroundSize: "25px 1427px",
+                      width: "20px",
+                      height: "20px",
+                      backgroundRepeat: "no-repeat",
+                      display: "inline-block",
+                    }}
+                  ></i>
+                  <span className={`${liked ? "text-blue-500" : ""}`}>
+                    Like
+                  </span>
+                </div>
+              )}
+              <div
+                onClick={() => {
+                  setComments((prev) => !prev);
+                }}
+                className="flex  gap-2 rounded-md hover:bg-hover-light dark:hover:bg-hover-dark w-fit p-2 py-3 cursor-pointer text-sm font-semibold text-neutral-500 dark:text-neutral-400 text-center flex-1 items-center justify-center"
+              >
+                <i
+                  className="opacity-70  dark:invert"
+                  style={{
+                    backgroundImage:
+                      "url(https://raw.githubusercontent.com/adarshrangare/Facebook_Clone_NS/main/src/assets/icons.png)",
+                    backgroundPosition: "0px -550px",
+                    backgroundSize: "25px 1427px",
+                    width: "20px",
+                    height: "20px",
+                    backgroundRepeat: "no-repeat",
+                    display: "inline-block",
+                  }}
+                ></i>
+                <span>Comment</span>
+              </div>
+              <div
+                className="flex gap-2 rounded-md hover:bg-hover-light dark:hover:bg-hover-dark w-fit p-2 py-3 cursor-pointer text-sm font-semibold text-neutral-500 dark:text-neutral-400 text-center flex-1 items-center justify-center"
+                onClick={() => {
+                  console.log(window.location.origin);
+
+                  navigator.clipboard.writeText(
+                    `${window.location.origin}/post/${post?._id}`
+                  );
+                  toast.success("Post Link copied to Clipboard");
+                }}
+              >
+                <i
+                  className="opacity-70 dark:invert"
+                  style={{
+                    backgroundImage:
+                      "url(https://raw.githubusercontent.com/adarshrangare/Facebook_Clone_NS/main/src/assets/icons.png)",
+                    backgroundPosition: "0px -886px",
+                    backgroundSize: "25px 1427px",
+                    width: "20px",
+                    height: "20px",
+                    backgroundRepeat: "no-repeat",
+                    display: "inline-block",
+                  }}
+                ></i>
+                <span>Share</span>
+              </div>
+            </div>
+          </div>
+        )}
         {openComments && <Comments postId={post?._id} />}
       </div>
     </>
