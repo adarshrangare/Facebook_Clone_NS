@@ -113,3 +113,7 @@ The following development dependencies are used in this project:
 - **tailwindcss** `^3.4.1`: Utility-first CSS framework for rapid UI development.
 - **typescript** `^5.4.5`: JavaScript with syntax for types, used for safer and more predictable code.
 
+
+### Contribution
+
+I welcome contributions to improve this project! Please fork the repository, create a new branch, and submit a pull request. Ensure to run `npm run lint` to follow coding standards.
