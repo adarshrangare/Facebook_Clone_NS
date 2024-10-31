@@ -60,3 +60,23 @@ The project is a social media application that aims to recreate core functionali
    ```bash
    npm run build
    npm run start
+
+### Folder Structure
+  
+  This document provides an overview of the folder structure for the project.
+  
+    ├── public # Public assets accessible by the client
+    ├── src 
+    │ ├── app # Main application folder 
+    │ ├── assets # Assets like images or static files
+    │ ├── components # Reusable UI components 
+    │ ├── context # Context providers for global state 
+    │ ├── lib # Utility functions and libraries 
+    │ └── types # TypeScript types for the project 
+    ├── middleware.ts # Middleware configuration file 
+    ├── .env # Environment variables 
+    ├── .eslintrc.json # ESLint configuration file  
+    ├── README.md # Project documentation 
+    ├── next.config.mjs # Next.js configuration file 
+    ├── package-lock.json # Automatically generated lock file for npm 
+    └── package.json # Project dependencies and scripts 
