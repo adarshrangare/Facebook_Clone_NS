@@ -80,3 +80,36 @@ The project is a social media application that aims to recreate core functionali
     ├── next.config.mjs # Next.js configuration file 
     ├── package-lock.json # Automatically generated lock file for npm 
     └── package.json # Project dependencies and scripts 
+   
+## Dependencies
+
+The following dependencies are used in this project:
+
+- **@heroicons/react** `^2.1.3`: Provides SVG icons for the UI.
+- **dayjs** `^1.11.11`: Used for date manipulation and formatting.
+- **formik** `^2.4.6`: Form handling and validation library.
+- **heroicons** `^2.1.3`: Additional hero icons for the application.
+- **next** `14.2.3`: The Next.js framework for server-side rendering and static site generation.
+- **next-auth** `^4.24.5`: Provides authentication support for Next.js.
+- **next-themes** `^0.3.0`: Theme management library for light and dark modes.
+- **react** `^18`: The core library for building user interfaces.
+- **react-dom** `^18`: Provides DOM-specific methods for React.
+- **react-hot-toast** `^2.4.1`: Library for displaying toast notifications.
+- **react-icons** `^5.2.0`: Icon library with popular icon sets.
+- **sharp** `^0.33.4`: High-performance image processing.
+- **yup** `^1.4.0`: Schema builder for form validation.
+
+## DevDependencies
+
+The following development dependencies are used in this project:
+
+- **@types/node** `^20`: TypeScript types for Node.js.
+- **@types/react** `^18`: TypeScript types for React.
+- **@types/react-dom** `^18`: TypeScript types for React DOM.
+- **antd** `^5.17.0`: UI component library for building responsive layouts.
+- **eslint** `^8`: Linting tool for identifying and fixing code quality issues.
+- **eslint-config-next** `14.2.3`: ESLint configuration for Next.js.
+- **postcss** `^8`: Tool for transforming CSS with JavaScript plugins.
+- **tailwindcss** `^3.4.1`: Utility-first CSS framework for rapid UI development.
+- **typescript** `^5.4.5`: JavaScript with syntax for types, used for safer and more predictable code.
+
