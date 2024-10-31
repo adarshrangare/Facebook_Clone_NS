@@ -49,5 +49,14 @@ The project is a social media application that aims to recreate core functionali
    NEXTAUTH_URL=http://localhost:3000
    NEXTAUTH_SECRET=your-secret
 
+### Running Application
+
+1. **Development Mode:** Start the app in development mode
+   ```bash
+   npm run dev
 
 
+2. **Production Mode**: Build and start the app for production
+   ```bash
+   npm run build
+   npm run start
