@@ -38,3 +38,16 @@ The project is a social media application that aims to recreate core functionali
    ```bash
    git clone https://github.com/adarshrangare/Facebook_Clone_NS.git
    cd Facebook_Clone_NS
+
+2. **Install dependencies**:
+   ```bash
+   npm install
+   
+3. **Environment Variables**  
+   Create a `.env.local` file in the root directory and add your environment variables such as:
+   ```bash
+   NEXTAUTH_URL=http://localhost:3000
+   NEXTAUTH_SECRET=your-secret
+
+
+
